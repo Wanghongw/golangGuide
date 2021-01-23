@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Home - Golang服务端入门与进阶指南</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Golang服务端入门与进阶指南</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">个人实践总结</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="基础/个人实践/">01 个人博客总结</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Golang基础总结</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="基础/1/">01 基础知识到循环</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="基础/2/">02 容器类型</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="基础/3/">03 函数闭包指针</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="基础/4/">04 值/引用类型与异常处理</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="基础/5/">05 结构体接口与反射</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="基础/6/">06 各种内置模块的使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="基础/7/">07 网编并发</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">The Go Programming Language</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="go圣经/入门/">01 入门</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Golang服务端入门与进阶指南</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="golang">Golang服务端入门与进阶指南</h3>
+<h3 id="_1">编者按</h3>
+<p>本文档是笔者在学习与实际使用Golang进行开发的过程中所做的笔记或者写的一些demo汇集而成的综合性的指南。最近自己也花了一些时间将零散的笔记或博客整合了一下，里面的案例基本都是自己平时写业务代码踩过的坑或者总结的比较好的issue，希望对从事Golang开发工作的读者们有所帮助。</p>
+<p>本文档使用了<code>mkdocs</code>进行撰写并托管到github上免费部署上线，如果你也有兴趣自己写一个文档可以参考笔者的这篇博客：<a href="https://www.cnblogs.com/paulwhw/p/12725523.html">使用mkdocs撰写技术文档并免费部署上线</a></p>
+<p>本文档共分为3部分：</p>
+<p>第一部分是笔者个人在工作实践中总结的一些知识点、踩过的坑以及封装的一些方便的功能；</p>
+<p>第二部分是刚刚接触Go语言读书、读文档、查资料对一些十分基础的知识点的总结以及亲手实践，属于比较基础的部分；</p>
+<p>第三部分是笔者阅读《<a href="https://github.com/dreamrover/gopl-pdf/commit/2b4c9993a641a3d7dc82725ba58fe43a6245d89f">The Go Programming Language</a>》做的一些笔记，其中文版项目是<a href="https://books.studygolang.com/gopl-zh/">Go语言圣经（中文版）</a>，个人认为这本书是每一位入门Golang的Golanger必读的经典书籍，书中由浅入深地对Golang每一个知识点进行了代码诠释，并且罗列出了一些开发者在开发过程中常见的错误、错误原因与解决方案。</p>
+<p>如果您觉得本指南对您有帮助，可以打赏支持作者，感谢您的支持！</p>
+<p><img alt="egg" src="imgs/we.jpg" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2021-01-23 05:19:45
+-->
