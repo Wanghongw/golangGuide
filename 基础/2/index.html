@@ -135,7 +135,7 @@
                     <li class="toctree-l1"><a class="reference internal" href="../7/">07 网编并发</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/1%E5%B9%B6%E5%8F%91/">01 并发</a>
                     </li>
@@ -185,23 +185,23 @@
 <p>但是数组也有一定的缺陷，就是定义后长度不能更改。</p>
 <h4 id="_3">数组的语法</h4>
 <p>Go语言数组声明需要指定元素类型及元素个数，语法格式如下。</p>
-<pre><code class="language-go">var 变量名 [数组长度] 数据类型
+<pre><code class="language-c++">var 变量名 [数组长度] 数据类型
 </code></pre>
 <p>以上为一维数组的定义方式，数组长度必须是整数且大于0，未初始化的数组不是nil，也就是说没有空数组（与切片不同）。</p>
 <p>初始化数组语法格式如下。</p>
-<pre><code class="language-go">var nums = [5]{1,2,3,4,5}
+<pre><code class="language-c++">var nums = [5]{1,2,3,4,5}
 </code></pre>
 <p>初始化数组中 {} 中的元素个数不能大于 [] 中的数字。</p>
 <p><strong>如果忽略 [] 中的数字，不设置数组长度，Go语言会根据元素的个数来设置数组的长度。可以忽略声明中数组的长度并将其替换为“…”。编译器会自动计算长度。语法格式如下。</strong></p>
-<pre><code class="language-go">var nums = [...]int{1,2,3,4,5,6}
+<pre><code class="language-c++">var nums = [...]int{1,2,3,4,5,6}
 </code></pre>
 <p>修改数组内容，语法格式如下:</p>
-<pre><code class="language-go">nums[4] = 23
+<pre><code class="language-c++">nums[4] = 23
 </code></pre>
 <p>以上实例读取数组第5个元素。数组元素可以通过索引（位置）来读取（或者修改），索引从0开始，第1个元素索引为0，第2个索引为1，以此类推。</p>
 <h4 id="_4">数组的长度</h4>
 <p>数组的长度是数组的一个内置常量，通过将数组作为参数传递给 len()函数，可以获得数组的长度。忽略声明中数组的长度并将其替换为“…”，编译器可以找到长度。接下来使用案例演示获取数组长度的方式：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     a := [4]int64{12,22,33,55}
@@ -210,7 +210,7 @@ func main(){
 }
 </code></pre>
 <h4 id="_5">遍历数组</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -231,16 +231,16 @@ func main(){
 <h4 id="_6">多维数组——主要是二维数组</h4>
 <p>由于数据的复杂程度不一样，数组可能有多个下标。一般将数组元素下标的个数称为维数，根据维数，可将数组分为一维数组、二维数组、三维数组、四维数组等。二维及以上的数组可称为多维数组。</p>
 <p>Go语言的多维数组声明方式：</p>
-<pre><code class="language-go">var variable_name [SIZE1][SIZE2]...[SIZEn] variable_type
+<pre><code class="language-c++">var variable_name [SIZE1][SIZE2]...[SIZEn] variable_type
 </code></pre>
 <h5 id="_7">二维数组</h5>
 <p>在实际的工作中，仅仅使用一维数组是远远不够的，例如，一个学习小组有10个人，每个人有3门课的考试成绩，如果使用一维数组解决是很麻烦的。这时，可以使用二维数组。</p>
 <p>二维数组是最简单的多维数组，二维数组的本质也是一个一维数组，只是数组成员由基本数据类型变成了构造数据类型（一维数组）。</p>
 <p>二维数组的定义方式如下。</p>
-<pre><code class="language-go">var arrayName [x][y] variable_type
+<pre><code class="language-c++">var arrayName [x][y] variable_type
 </code></pre>
 <p>二维数组初始化，语法格式如下:</p>
-<pre><code class="language-go">a = [3][4]int{
+<pre><code class="language-c++">a = [3][4]int{
   {0,1,2,3}, // 第一行索引为0
   {4,5,6,7}, // 第二行索引为1
   {8,9,10,11} // 第三行索引为2
@@ -249,7 +249,7 @@ func main(){
 <p>上述定义的二维数组共包含3×4个元素，即12个元素。接下来，我们通过一张图来描述二维数组a的元素分布情况，如图5.3所示。</p>
 <p><img alt="image-20201024182415812" src="../../imgs/image-20201024182415812.png" /></p>
 <p>二维数组元素通过指定坐标来访问，如数组中的行索引与列索引。语法格式如下。</p>
-<pre><code class="language-go">int val = a[2][3]
+<pre><code class="language-c++">int val = a[2][3]
 </code></pre>
 <p>以上实例访问了二维数组val第3行的第4个元素。</p>
 <p>二维数组可以使用循环嵌套来输出元素，具体语法通过案例演示</p>
@@ -260,7 +260,7 @@ func main(){
 <p>Go语言中的数组并非引用类型，而是值类型。</p>
 <p>当它们被分配给一个新变量时，会将原始数组复制出一份分配给新变量。</p>
 <p><strong>因此对新变量进行更改，原始数组不会有反应。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     a := [...]string{&quot;USA&quot;,&quot;China&quot;,&quot;India&quot;,&quot;Germany&quot;}
@@ -284,17 +284,17 @@ func main(){
 <h4 id="_10">切片的语法</h4>
 <h5 id="1">1. 声明切片</h5>
 <p>声明一个未指定长度的数组来定义切片，具体示例如下：</p>
-<pre><code class="language-go">var indentifier []type
+<pre><code class="language-c++">var indentifier []type
 </code></pre>
 <p>切片不需要说明长度。采用该声明方式且未初始化的切片为空切片。该切片默认为nil，长度为0。</p>
 <p><strong>使用make()函数来创建切片，语法格式如下:</strong></p>
-<pre><code class="language-go">var slice1 []type make([]type,len)
+<pre><code class="language-c++">var slice1 []type make([]type,len)
 </code></pre>
 <p><strong>使用make()函数来创建切片可以简写为如下格式:</strong></p>
-<pre><code class="language-go">slice1 := make([]type,len)
+<pre><code class="language-c++">slice1 := make([]type,len)
 </code></pre>
 <p>创建切片时可以指定容量，其中capacity为可选参数：make([]T, length,capacity)。详情如下：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     var nums = make([]int,3,5)
@@ -305,25 +305,25 @@ func main(){
 </code></pre>
 <h5 id="2">2. 初始化</h5>
 <p>（1）直接初始化切片，语法格式如下：</p>
-<pre><code class="language-go">s := [] int {1,2,3}
+<pre><code class="language-c++">s := [] int {1,2,3}
 </code></pre>
 <p>（2）通过数组截取来初始化切片，语法格式如下:</p>
-<pre><code class="language-go">arr := [5]int {1,2,3,4,5}
+<pre><code class="language-c++">arr := [5]int {1,2,3,4,5}
 s := arr[:]
 </code></pre>
 <p>切片中包含数组所有元素，语法格式如下。</p>
-<pre><code class="language-go">s := arr[startIndex : endIndex]
+<pre><code class="language-c++">s := arr[startIndex : endIndex]
 </code></pre>
 <p>将arr中从下标startIndex到endIndex-1下的元素创建为一个新的切片（前闭后开），长度为endIndex-startIndex。</p>
 <p>缺省endIndex时表示一直到arr的最后一个元素，语法格式如下。</p>
-<pre><code class="language-go">s := arr[startIndex:]
+<pre><code class="language-c++">s := arr[startIndex:]
 </code></pre>
 <p>缺省startIndex时表示从arr的第一个元素开始，语法格式如下。</p>
-<pre><code class="language-go">s := arr[:endIndex]
+<pre><code class="language-c++">s := arr[:endIndex]
 </code></pre>
 <p>（3）通过切片截取来初始化切片。</p>
 <p>可以通过设置下限及上限来设置截取切片：[lower-bound:upper-bound]:</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     // 创建切片
@@ -347,7 +347,7 @@ func printSlice(x []int){
 <p>切片可以通过len()方法获取长度，可以通过cap()方法获取容量。数组计算cap()结果与len()相同。</p>
 <h3 id="_11">切片是引用类型 ***</h3>
 <p><strong>切片没有自己的任何数据。它只是底层数组的一个引用。对切片所做的任何修改都将反映在底层数组中。数组是值类型，而切片是引用类型，两者的区别如下例所示：</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -378,7 +378,7 @@ func main(){
 <p><strong>删除中间元素的方法：</strong></p>
 <p><img alt="image-20201024190457761" src="../../imgs/image-20201024190457761.png" /></p>
 <h3 id="appendcopy_1">append()与copy()的对比案例一***</h3>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -429,7 +429,7 @@ func main(){
 }
 </code></pre>
 <h3 id="appendcopy_2">append()与copy()的对比案例二***</h3>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -483,16 +483,16 @@ sa addr:0xc0000be000 len=10 cap=16 slice=[0 1 2 3 4 5 6 7 8 9]
 <h4 id="map_1">map的声明</h4>
 <p>可以使用var关键字来定义map，也可以使用内建函数make()。</p>
 <p>（1）使用var关键字定义map</p>
-<pre><code class="language-go">var 变量名 map[key类型] value类型
+<pre><code class="language-c++">var 变量名 map[key类型] value类型
 </code></pre>
 <p><strong>使用var关键字声明map，未初始化的map的默认值是nil。</strong></p>
 <p><strong>nil map不能存放键值对。如果要使用map存储键值对，必须在声明时初始化，或者使用make()函数分配到内存空间。</strong></p>
 <p>（2）使用make()函数</p>
-<pre><code class="language-go">变量名 := make(map[key类型]value类型)
+<pre><code class="language-c++">变量名 := make(map[key类型]value类型)
 </code></pre>
 <p>该声明方式，如果不初始化map，map也不等于nil。</p>
 <h4 id="map_2">map的初始化赋值和遍历</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -545,7 +545,7 @@ func main(){
 <h4 id="map_3">查看元素是否在map中 ***</h4>
 <p><strong>可以通过key获取map中对应的value值。语法为：map[key]。当key不存在时，会得到该value值类型的默认值，比如string类型得到空字符串，int类型得到0，程序不会报错。</strong></p>
 <p><strong>所以可以通过value, ok := map[key]获知key/value是否存在。ok是bool型，如果ok是true，则该键值对存在，否则不存在。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -580,7 +580,7 @@ func main(){
 </code></pre>
 <h4 id="delete">delete()函数</h4>
 <p>delete(map, key) 函数用于删除集合的某个元素，参数为map和其对应的key。删除函数不返回任何值。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -611,7 +611,7 @@ func main(){
 <h4 id="map_4">map是引用类型</h4>
 <p>map与切片相似，都是引用类型。</p>
 <p><strong>将一个map赋值给一个新的变量时，它们指向同一块内存（底层数据结构）。因此，修改两个变量的内容都能够引起它们所指向的数据发生变化。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;

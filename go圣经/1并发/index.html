@@ -69,7 +69,7 @@
                     <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/7/">07 网编并发</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">01 并发</a>
     <ul class="current">
@@ -133,7 +133,7 @@
     
       
         
-          <li>The Go Programming Language &raquo;</li>
+          <li>《Go语言圣经》笔记 &raquo;</li>
         
       
     
@@ -154,7 +154,7 @@
 <p>如果你使用过操作系统或者其它语言提供的线程，那么你可以简单地把goroutine类比作一个线程，这样你就可以写出一些正确的程序了。goroutine和线程的本质区别会在9.8节中讲。</p>
 <p><strong>当一个程序启动时，其主函数即在一个单独的goroutine中运行，我们叫它main goroutine。新的goroutine会用go语句来创建。在语法上，go语句是一个普通的函数或方法调用前加上关键字go。</strong></p>
 <p><strong>go语句会使其语句中的函数在一个新创建的goroutine中运行。而go语句本身会迅速地完成。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -201,7 +201,7 @@ func fib(x int) int{
 <p><strong>每个channel都有一个特殊的类型，也就是channels可发送数据的类型。</strong></p>
 <p><strong>一个可以发送string类型数据的channel一般写为chan string。</strong></p>
 <h4 id="channel">创建channel</h4>
-<pre><code class="language-go">ch := make(chan string)
+<pre><code class="language-c++">ch := make(chan string)
 </code></pre>
 <h4 id="channel_1">channel的类型及比较</h4>
 <p><strong>和map类似，channel也对应一个make创建的底层数据结构的引用。</strong></p>
@@ -215,7 +215,7 @@ func fib(x int) int{
 <p><strong>在发送语句中，<code>&lt;-</code>运算符分割channel和要发送的值。</strong></p>
 <p><strong>在接收语句中，<code>&lt;-</code>运算符写在channel对象之前。</strong></p>
 <p><strong>一个不使用接收结果的接收操作也是合法的。</strong></p>
-<pre><code class="language-go">ch &lt;- x  // a send statement
+<pre><code class="language-c++">ch &lt;- x  // a send statement
 x = &lt;-ch // a receive expression in an assignment statement
 &lt;-ch     // a receive statement; result is discarded(丢弃)
 </code></pre>
@@ -224,11 +224,11 @@ x = &lt;-ch // a receive expression in an assignment statement
 <p><strong>对一个已经被close过的channel进行<code>接收</code>操作依然可以接受到之前已经成功发送的数据；</strong></p>
 <p><strong>如果channel中已经没有数据的话将产生一个<code>零值</code>的数据。</strong></p>
 <p>使用内置的close函数就可以关闭一个channel：</p>
-<pre><code class="language-Go">close(ch)
+<pre><code class="language-c++">close(ch)
 </code></pre>
 <h4 id="bufferedunbuffered-channel">buffered与unbuffered channel</h4>
 <p>以最简单方式调用make函数创建的是一个无缓存的channel，但是我们也可以指定第二个整型参数，对应channel的容量。如果channel的容量大于零，那么该channel就是带缓存的channel。</p>
-<pre><code class="language-Go">ch = make(chan int)    // unbuffered channel
+<pre><code class="language-c++">ch = make(chan int)    // unbuffered channel
 ch = make(chan int, 0) // unbuffered channel
 ch = make(chan int, 3) // buffered channel with capacity 3
 </code></pre>
@@ -243,7 +243,7 @@ ch = make(chan int, 3) // buffered channel with capacity 3
 <p><strong>在下一章中我们将看到，当两个goroutine并发访问了相同的变量时，我们有必要保证某些事件的执行顺序，以避免出现某些并发问题。</strong></p>
 <h4 id="channel_4">同步channel的示例</h4>
 <p>在8.3节的客户端程序，它在<code>主goroutine</code>中（译注：就是<code>执行main函数的goroutine</code>）将标准输入复制到server，因此当客户端程序关闭标准输入时，后台goroutine可能依然在工作。我们需要让主goroutine等待后台goroutine完成工作后再退出，我们使用了一个channel来同步两个goroutine：</p>
-<pre><code class="language-go">
+<pre><code class="language-c++">
 
 </code></pre>
 <h3 id="842-channelpipeline">8.4.2✨ 串联的channel(pipeline)</h3>

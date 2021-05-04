@@ -181,7 +181,7 @@
                     <li class="toctree-l1"><a class="reference internal" href="../7/">07 网编并发</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/1%E5%B9%B6%E5%8F%91/">01 并发</a>
                     </li>
@@ -225,7 +225,7 @@
                 <h2 id="_1">占位</h2>
 <h3 id="1">1 基础部分</h3>
 <p><strong>Go语言基本结构及说明</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import (
     &quot;fmt&quot;
     &quot;runtime&quot;
@@ -262,22 +262,22 @@ func main()  {
 <li>函数、指针变量、切片默认值为nil。</li>
 </ul>
 <p><strong>初始化变量的标准格式如下：</strong></p>
-<pre><code class="language-go">var a int = 199 //初始化变量的标准格式
+<pre><code class="language-c++">var a int = 199 //初始化变量的标准格式
 var b = 100 //初始化变量的编译器自动推断类型格式
 c := 123 //初始化变量的简短声明格式
 </code></pre>
 <p><strong>使用 := 赋值操作符可以高效地创建一个新的变量，称为初始化声明。声明语句省略了 var 关键字，变量类型将由编译器自动推断。这是声明变量的首选形式，但是它只能被用在函数体内，而不可以用于全局变量的声明与赋值。该变量名必须是没有定义过的变量，若定义过，将发生编译错误。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 func main(){
   // 这样写是错误的
     var a = 123
     a := 222
 }
 </code></pre>
-<pre><code class="language-go">./variable.go:7:4: no new variables on left side of :=
+<pre><code class="language-c++">./variable.go:7:4: no new variables on left side of :=
 </code></pre>
 <p>多个短变量声明和赋值中，至少有一个新声明的变量出现在左侧，那么即便其他变量名可能是重复声明的，编译器也不会报错。情况如下所示：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
   // 这种情况不会报错
@@ -292,7 +292,7 @@ func main(){
 <p>变量多重赋值是指多个变量同时赋值。</p>
 <p>Go语法中，变量初始化和变量赋值是两个不同的概念。Go语言的变量赋值与其他语言一样，但是Go提供了其他程序员期待已久的多重赋值功能，可以实现变量交换。多重赋值让Go语言比其他语言减少了代码量。</p>
 <p>go语言中使用多重赋值进行变量交换的例子：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     var a = 666
@@ -307,7 +307,7 @@ func main(){
 <p><strong>匿名变量</strong></p>
 <p>Go语言的函数可以返回多个值，而<strong>事实上并不是所有的返回值都用得上</strong>。那么就可以使用匿名变量，用下画线“_”替换即可。</p>
 <p>例如，定义一个函数，功能为返回两个int型变量，第一个返回10，第二个返回20，第一次调用舍弃第二个返回值，第二次调用舍弃第一个返回值，具体语法格式如下所示。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 
 func getData()(int, string, bool){
@@ -341,14 +341,14 @@ func main(){
 <h4 id="_5">布尔型</h4>
 <p>布尔型用预定义标识符bool表示。在C语言中，对于布尔型的值定义，非0表示真，0表示假。而在Go语言中，布尔型的值只可以是常量true或者false。</p>
 <p>声明方式如下所示。</p>
-<pre><code class="language-go">var flag bool
+<pre><code class="language-c++">var flag bool
 </code></pre>
 <p><strong>布尔型无法参与数值运算，也无法与其他类型进行转换。</strong></p>
 <h4 id="_6">字符串</h4>
 <p>字符串在Go语言中是以基本数据类型出现的，使用字符串就像使用其他原生基本数据类型int、float32、float64、bool一样。</p>
 <p>字符串在C++语言中，以类的方式进行封装，不属于基本数据类型。</p>
 <p>在go中使用字符串：</p>
-<pre><code class="language-go">var s1 string //定义名为s1的字符串类型变量
+<pre><code class="language-c++">var s1 string //定义名为s1的字符串类型变量
 s1 = &quot;HelloWorld&quot; //变量赋值
 
 student1 := &quot;火影whw&quot; //以自动推断方式初始化
@@ -362,7 +362,7 @@ student1 := &quot;火影whw&quot; //以自动推断方式初始化
 <li>在反引号中的所有代码不会被编译器识别，而只是作为字符串的一部分。</li>
 <li>多行字符串定义方式如例2-1所示。</li>
 </ul>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 
 func getString()(string){
@@ -383,7 +383,7 @@ func main(){
 <p>字符串中的每一个元素叫作“字符”，定义字符时使用单引号。Go语言的字符有两种，如表2.5所示。</p>
 <p><img alt="image-20201022120100841" src="../../imgs/image-20201022120100841.png" /></p>
 <p>声明示例如下（注意必须是单引号！）：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 
 func main(){
@@ -398,7 +398,7 @@ func main(){
 <p>打印格式化通常使用fmt包，通用的打印格式如表：</p>
 <p><img alt="image-20201024100236018" src="../../imgs/image-20201024100236018.png" /></p>
 <p>具体的使用方法：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     str := &quot;wanghw&quot;
@@ -417,7 +417,7 @@ func main(){
 <p>通过上例可以看出，使用通用的格式打印，输出的结果可能不是自己想要的，为了确保输出结果与需求一致，还需要学习具体格式的打印方式。</p>
 <h4 id="_8"><strong>布尔型打印格式</strong></h4>
 <p><img alt="image-20201024100347282" src="../../imgs/image-20201024100347282.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -432,7 +432,7 @@ func main(){
 </code></pre>
 <h4 id="_9"><strong>整型打印格式</strong></h4>
 <p><img alt="image-20201024100705972" src="../../imgs/image-20201024100705972.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     fmt.Printf(&quot;%T, %d \n&quot;,123, 123) //int, 123
@@ -449,7 +449,7 @@ func main(){
 </code></pre>
 <h4 id="_10"><strong>浮点型与复数型打印格式</strong></h4>
 <p><img alt="image-20201024101359915" src="../../imgs/image-20201024101359915.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     fmt.Printf(&quot;%b \n&quot;,123.23433) //8671845041675824p-46
@@ -464,7 +464,7 @@ func main(){
 }
 </code></pre>
 <h4 id="_11"><strong>关于复数的打印格式如下</strong></h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     var value complex64 = 2.2 + 22i
@@ -476,7 +476,7 @@ func main(){
 </code></pre>
 <h4 id="_12"><strong>字符串打印与字节数组的打印格式</strong></h4>
 <p><img alt="image-20201024102229661" src="../../imgs/image-20201024102229661.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     arr := []byte{'a','b','c','d'}
@@ -494,7 +494,7 @@ func main(){
 <h3 id="24">2.4 数据类型转换</h3>
 <p>Go语言采用数据类型前置加括号的方式进行类型转换，格式如：T（表达式）。T表示要转换的类型；表达式包括变量、数值、函数返回值等。</p>
 <p>类型转换时，需要考虑两种类型之间的关系和范围，是否会发生数值截断。就像将1000毫升的水倒入容积为500毫升的瓶子里，余出来500毫升的水便会流失。值得注意的是，<strong>布尔型无法与其他类型进行转换</strong>。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     a := 100
@@ -506,7 +506,7 @@ func main(){
 </code></pre>
 <h4 id="_13"><strong>浮点型与整型之间转换</strong></h4>
 <p><strong>float和int的类型精度不同，使用时需要注意float转int时精度的损失。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -534,7 +534,7 @@ func main() {
 <p>详情如下：</p>
 <p><img alt="image-20201022140218438" src="../../imgs/image-20201022140218438.png" /></p>
 <p>具体的使用方法如下：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     a := 97
@@ -547,7 +547,7 @@ func main() {
 }
 </code></pre>
 <p><strong>Go语言中不允许字符串转int</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     a := &quot;丁&quot;
@@ -557,11 +557,11 @@ func main() {
 }
 </code></pre>
 <p>会上报下面的错误：</p>
-<pre><code class="language-go">cannot convert a (type string) to type int64
+<pre><code class="language-c++">cannot convert a (type string) to type int64
 </code></pre>
 <h3 id="25">2.5 常量</h3>
 <p>常量是一个简单值的标识符，在程序运行时，不会被修改。常量中的数据类型只可以是布尔型、数字型（整型、浮点型和复数型）和字符串。常量的定义格式如下：</p>
-<pre><code class="language-go">const A string = &quot;wanghw&quot;
+<pre><code class="language-c++">const A string = &quot;wanghw&quot;
 
 const B = &quot;whw&quot;
 
@@ -571,7 +571,7 @@ const C, D = &quot;www&quot;, &quot;waa&quot;
 <h4 id="_15">常量用于枚举</h4>
 <p>Go语言现阶段没有提供枚举，可以使用常量组模拟枚举。</p>
 <p>假设数字0、1和2分别代表未知性别、女性和男性。格式如例：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 const (
     Unknown = 0
@@ -585,7 +585,7 @@ func main(){
 }
 </code></pre>
 <p>常量组中如果不指定类型和初始值，则与上一行非空常量的值相同：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 const (
     a = 10
@@ -602,7 +602,7 @@ func main(){
 <p>iota，特殊常量值，是一个系统定义的可以被编译器修改的常量值。</p>
 <p>iota只能被用在常量的赋值中，在每一个const关键字出现时，被重置为0，然后每出现一个常量，iota所代表的数值会自动增加1。</p>
 <p>iota可以理解成常量组中<strong>常量的计数器</strong>，不论该常量的值是什么，<strong>只要有一个常量，那么iota就加1</strong>。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 const (
     a = 12
@@ -616,7 +616,7 @@ func main(){
 }
 </code></pre>
 <p>常量组中如果不指定类型和初始值，则与上一行非空常量的值相同：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 const (
     a = iota
@@ -633,7 +633,7 @@ func main(){
 <p>类型别名是Go1.9版本添加的新功能。说到类型别名，无非是给类型名取一个有特殊含义的外号而已，就像武侠小说中的东邪西毒。假如在教室中，有两个同学叫张三，老师为了区分他们，通常会给他们起个别名：大张三、小张三。对于编程而言，类型别名主要用于解决兼容性的问题。</p>
 <p><img alt="image-20201022201545626" src="../../imgs/image-20201022201545626.png" /></p>
 <p>该语句是将NewString定义为string类型。通过type关键字，NewString会形成一种新的类型。NewString本身依然具备string的特性。</p>
-<pre><code class="language-go">type StringAliaa = string
+<pre><code class="language-c++">type StringAliaa = string
 </code></pre>
 <p>该语句是将StringAlias定义为string的一个别名。使用StringAlias与string等效。别名类型只会在代码中存在，编译完成时，不会有别名类型。</p>
 <p>出于对程序性能的考虑，建议如下：</p>
@@ -673,11 +673,11 @@ func main(){
 <p><img alt="image-20201022203944476" src="../../imgs/image-20201022203944476.png" /></p>
 <h3 id="if">if的特殊写法</h3>
 <p>if语句还有一个变体。它的语法如下所示。</p>
-<pre><code class="language-go">if statement; condition {
+<pre><code class="language-c++">if statement; condition {
   // 代码块
 }
 </code></pre>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 
 func main(){
@@ -711,14 +711,14 @@ func main(){
 <p>按语法结构来分，Go语言的for循环有4种形式，只有第一种使用分号。</p>
 <p>for循环中for关键字后不能加小括号。</p>
 <h4 id="_16">语法结构一</h4>
-<pre><code class="language-go">for 初始预计init; 条件表达式condition; 结束语句post {
+<pre><code class="language-c++">for 初始预计init; 条件表达式condition; 结束语句post {
   // 循环体代码
 }
 </code></pre>
 <p><strong>先执行初始语句，对控制变量赋初始值。初始语句只执行一次。</strong></p>
 <p><strong>其次根据控制变量判断条件表达式的返回值，若其值为true，满足循环条件，则执行循环体内语句，之后执行结束语句，开始下一次循环。</strong></p>
 <p><strong>执行结束语句之后，将重新计算条件表达式的返回值，如果是true，循环将继续执行，否则循环终止。然后执行循环体外语句。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     for i:=0; i&lt;10; i++{
@@ -730,7 +730,7 @@ func main(){
 <p>初始语句、条件表达式和结束语句3种组成部分都是可选的。因此这种基本的for循环语法结构又能演化出4种略有不同的写法。</p>
 <p><strong>初始语句是在第一次循环前执行的语句，一般为赋值表达式，给控制变量赋初始值。如果控制变量在此处被声明，其作用域将被局限在这个for的范围内——在for循环中声明的变量仅在循环范围内可用。初始语句可以省略不写，但是初始语句之后的分号必须要写。</strong></p>
 <p>省略初始语句的写法：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     a := 3
@@ -742,7 +742,7 @@ func main(){
 </code></pre>
 <p><strong>条件表达式（condition）是控制循环与否的开关：如果表达式为true，则循环继续；否则结束循环。条件表达式可以省略不写，之后的分号必须要写。省略条件表达式默认形成无限循环。</strong></p>
 <p>省略条件表达式的写法：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     a := 3
@@ -758,11 +758,11 @@ func main(){
 <p><strong>结束语句（post），一般为赋值表达式，使控制变量递增或者递减。post语句将在循环的每次成功迭代之后执行。</strong></p>
 <h4 id="_17">语法结构二</h4>
 <p><strong>for关键字后只有1个条件表达式，效果类似其他编程语言中的while循环。其语法结构如下所示。</strong></p>
-<pre><code class="language-go">for 循环条件condition{
+<pre><code class="language-c++">for 循环条件condition{
   // 循环体代码
 }
 </code></pre>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     var a int
@@ -775,11 +775,11 @@ func main(){
 </code></pre>
 <h4 id="_18">语法结构三</h4>
 <p><strong>for关键字后无表达式，效果与其他编程语言的for(;;) {}一致，此时for执行无限循环。其语法结构如下所示。</strong></p>
-<pre><code class="language-go">for {
+<pre><code class="language-c++">for {
   // 循环体代码
 }
 </code></pre>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     var a int
@@ -798,11 +798,11 @@ func main() {
 <p><strong>for循环的range格式对string、slice、array、map、channel等进行迭代循环。</strong></p>
 <p><strong>array、slice、string返回索引和值；map返回键和值；channel只返回通道内的值。</strong></p>
 <p><strong>其语法结构如下所示:</strong></p>
-<pre><code class="language-go">for key, value := range oldMap{
+<pre><code class="language-c++">for key, value := range oldMap{
   newMap[key] = value
 }
 </code></pre>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     str := &quot;123abC火影王&quot;
@@ -824,7 +824,7 @@ func main() {
 </code></pre>
 <h3 id="for">for循环使用案例</h3>
 <h4 id="1100">求1～100的和</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     sum := 0
@@ -836,7 +836,7 @@ func main() {
 //5050
 </code></pre>
 <h4 id="1303">求1～30所有3的倍数的数字的和</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -864,7 +864,7 @@ func main() {
 </code></pre>
 <h4 id="_19">截竹竿问题</h4>
 <p>截竹竿。32米竹竿，每次截1.5米，至少截几次之后剩余竹竿不足4米？</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     var length float32
@@ -881,7 +881,7 @@ func main() {
 <h3 id="36-for">3.6 for循环嵌套</h3>
 <h4 id="_20">语法结构</h4>
 <p>Go语言允许在循环体内使用循环。其语法结构如下所示：</p>
-<pre><code class="language-go">for [condition | (init;condition;increment) | Range] {
+<pre><code class="language-c++">for [condition | (init;condition;increment) | Range] {
 
   for [condition | (init;condition;increment) | Range] {
     statement(s);
@@ -892,7 +892,7 @@ func main() {
 </code></pre>
 <h4 id="_21">使用案例</h4>
 <p><strong>打印直角三角形</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -916,7 +916,7 @@ func main() {
 */
 </code></pre>
 <p><strong>打印99乘法表</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     for i:=1;i&lt;=9;i++{ // i控制行数，是乘法表中的第二个数
@@ -939,7 +939,7 @@ func main() {
 */
 </code></pre>
 <h4 id="150">使用循环嵌套来输出1～50中的素数</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     fmt.Println(&quot;1-50中的素数：&quot;)
@@ -965,7 +965,7 @@ func main() {
 <h3 id="37">3.7 循环控制语句</h3>
 <h4 id="break">break语句</h4>
 <p>break，跳出循环体。break语句用于终止当前正在执行的for循环，并开始执行循环之后的语句。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     for i:=1;i&lt;100;i++{
@@ -986,7 +986,7 @@ newline after for loop
 <h4 id="continue">continue语句</h4>
 <p>Go语言的continue语句有点像break语句。但是continue不是跳出循环，而是跳过当前循环，执行下一次循环语句。</p>
 <p>for循环中，执行continue语句会触发for增量语句的执行。<strong>换言之，continue语句用于跳过for循环的当前迭代，循环将继续到下一个迭代。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main() {
     //打印1-10中的偶数
@@ -1010,7 +1010,7 @@ func main() {
 <p>Go语言的goto语句可以无条件地转移到程序指定的行。</p>
 <p>goto语句通常与条件语句配合使用。可用来实现条件转移、构成循环、跳出循环体等功能。</p>
 <p><strong>但是，在结构化程序设计中一般不建议使用goto语句，以免造成程序流程的混乱，使理解和调试程序都产生困难。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 

@@ -177,7 +177,7 @@
                     <li class="toctree-l1"><a class="reference internal" href="../7/">07 网编并发</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/1%E5%B9%B6%E5%8F%91/">01 并发</a>
                     </li>
@@ -224,7 +224,7 @@
 <p><img alt="image-20201118194804441" src="../../imgs/image-20201118194804441.png" /></p>
 <h3 id="1">1 字符串的操作</h3>
 <h4 id="11">1.1 字符串的遍历 ***</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -263,7 +263,7 @@ func main() {
 <p><img alt="image-20201117171010116" src="../../imgs/image-20201117171010116.png" /></p>
 <h4 id="_3">分割字符串</h4>
 <p><img alt="image-20201201172124519" src="../../imgs/image-20201201172124519.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -311,7 +311,7 @@ func main() {
 </code></pre>
 <h4 id="_4">大小写转换</h4>
 <p><img alt="image-20201201174545070" src="../../imgs/image-20201201174545070.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -338,7 +338,7 @@ func main() {
 </code></pre>
 <h4 id="_5">修剪字符串</h4>
 <p><img alt="image-20201201175116143" src="../../imgs/image-20201201175116143.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -378,7 +378,7 @@ func main() {
 </code></pre>
 <h4 id="_6">比较字符串</h4>
 <p><img alt="image-20201201181214679" src="../../imgs/image-20201201181214679.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -417,12 +417,12 @@ func main() {
 <p><img alt="image-20201118202800045" src="../../imgs/image-20201118202800045.png" /></p>
 <h4 id="1_1">1) 统计字符串长度(按字节)</h4>
 <p><strong>len函数</strong></p>
-<pre><code class="language-go">str := &quot;火影whw&quot;
+<pre><code class="language-c++">str := &quot;火影whw&quot;
 fmt.Println(len(str)) // 9   注意一个中文字符占3个unitcode位
 </code></pre>
 <h4 id="2">2) 字符串遍历，同时处理有中文的问题</h4>
 <p><strong>r := []rune(str)</strong></p>
-<pre><code class="language-go">str := &quot;火影whw&quot;
+<pre><code class="language-c++">str := &quot;火影whw&quot;
 newStr := []rune(str)
 for i,val := range newStr{
   fmt.Printf(&quot;%d:%c &quot;,i,val)
@@ -430,7 +430,7 @@ for i,val := range newStr{
 // 0:火 1:影 2:w 3:h 4:w
 </code></pre>
 <h4 id="3">3) 字符串转整数</h4>
-<pre><code class="language-go">n, err := strconv.Atoi(&quot;123&quot;)
+<pre><code class="language-c++">n, err := strconv.Atoi(&quot;123&quot;)
 if err != nil{
   fmt.Println(&quot;转换错误&quot;,err)
 }else{
@@ -438,24 +438,24 @@ if err != nil{
 }
 </code></pre>
 <h4 id="4">4) 整数转字符串</h4>
-<pre><code class="language-go">str := strconv.Itoa(123)
+<pre><code class="language-c++">str := strconv.Itoa(123)
 fmt.Printf(&quot;str&gt;&gt;&gt; %v, %T \n&quot;,str, str) // 123, string 
 </code></pre>
 <h4 id="5">5)</h4>
 <p><img alt="image-20201117200439210" src="../../imgs/image-20201117200439210.png" /></p>
 <h4 id="6">6) 查找子串是否在指定的字符串中</h4>
-<pre><code class="language-go">b := strings.Contains(&quot;wanghw&quot;,&quot;ang&quot;)
+<pre><code class="language-c++">b := strings.Contains(&quot;wanghw&quot;,&quot;ang&quot;)
     fmt.Println(b)// true
 </code></pre>
 <h4 id="7">7) 统计一个字符串有几个指定的子串</h4>
-<pre><code class="language-go">strings.Count(&quot;Chinese&quot;,&quot;c&quot;)
+<pre><code class="language-c++">strings.Count(&quot;Chinese&quot;,&quot;c&quot;)
 </code></pre>
 <h4 id="8">8) 不区分大小写的比较</h4>
-<pre><code class="language-go">result := strings.EqualFold(&quot;whw&quot;,&quot;Whw&quot;)
+<pre><code class="language-c++">result := strings.EqualFold(&quot;whw&quot;,&quot;Whw&quot;)
 fmt.Println(result)// true
 </code></pre>
 <h4 id="9">9) 其他整合</h4>
-<pre><code class="language-go">// 返回子串第一次出现的index值，没有就返回-1
+<pre><code class="language-c++">// 返回子串第一次出现的index值，没有就返回-1
     index := strings.Index(&quot;wanghw&quot;,&quot;w&quot;)
     fmt.Println(index)// 0
 
@@ -508,7 +508,7 @@ fmt.Println(result)// true
 <h4 id="parse">Parse类函数</h4>
 <p>Parse 类函数主要的功能是将字符串转换为其他类型，常用的 Parse 类函数如表：</p>
 <p><img alt="image-20201201182709765" src="../../imgs/image-20201201182709765.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -542,7 +542,7 @@ func main() {
 <h4 id="format">Format类函数</h4>
 <p><strong>Format类函数主要的功能是将其他类型格式化成字符串</strong></p>
 <p><img alt="image-20201201193009841" src="../../imgs/image-20201201193009841.png" /></p>
-<pre><code class="language-go">// 推荐一个更加强大的转换库：https://github.com/spf13/cast
+<pre><code class="language-c++">// 推荐一个更加强大的转换库：https://github.com/spf13/cast
 package main
 
 import (
@@ -598,36 +598,36 @@ func main() { // 测试 int 和 string(decimal) 互相转换的函数
 <p>使用随机数生成器需要放入种子。可以使用Seed()函数生成一个不确定的种子放入随机数生成器，这样每次运行随机数生成器都会生成不同的序列。如果没有在随机数生成器中放入种子，则默认使用具有确定性状态的种子，此时可以理解为种子的值是一个常数1，即Seed(1)。</p>
 <p><img alt="image-20201201193621239" src="../../imgs/image-20201201193621239.png" /></p>
 <h4 id="_7">获取随机数的几种方式</h4>
-<pre><code class="language-go">println(rand.Int())
+<pre><code class="language-c++">println(rand.Int())
 println(rand.Float64())
 println(rand.Intn(12))// 获取 0-12随机数
 </code></pre>
 <p><strong>这样总是生成固定的随机数。默认情况下，随机数种子都是1。seed是一个64位整数。</strong></p>
 <p>动态随机数种子生成随机资源，产生随机对象来获取随机数，具体方法如下所示:</p>
-<pre><code class="language-go">s1 := rand.NewSource(time.Now().UnixNano())
+<pre><code class="language-c++">s1 := rand.NewSource(time.Now().UnixNano())
 r1 := rand.New(s1)
 randNum := r1.Intn(12) // 0-12随机数
 fmt.Println(randNum)
 </code></pre>
 <p><strong>简写形式：动态变化随机数种子来获取随机数，具体方法如下所示:</strong></p>
 <p>（1）获取整型 0～10随机数</p>
-<pre><code class="language-go">rand.Seed(time.Now().UnixNano())
+<pre><code class="language-c++">rand.Seed(time.Now().UnixNano())
 rand.Intn(10)
 </code></pre>
 <p>（2）获取浮点型 0.0～1.0随机数</p>
-<pre><code class="language-go">rand.Seed(time.Now().UnixNano())
+<pre><code class="language-c++">rand.Seed(time.Now().UnixNano())
 rand.Float64()
 </code></pre>
 <p>（3）获取 m～n随机数</p>
-<pre><code class="language-go">rand.Seed(time.Now().UnixNano())
+<pre><code class="language-c++">rand.Seed(time.Now().UnixNano())
 随机数 = rand.Intn(n - m + 1) + m
 </code></pre>
 <p>比如 获取 [5,11]随机数，语法如下：</p>
-<pre><code class="language-go">rand.Intn(7) + 5
+<pre><code class="language-c++">rand.Intn(7) + 5
 </code></pre>
 <h3 id="6regexp">6、regexp正则表达式包</h3>
 <h4 id="regexp">regexp包中核心函数及方法介绍</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -676,7 +676,7 @@ func main() {
 <p><img alt="image-20201130163038182" src="../../imgs/image-20201130163038182.png" /></p>
 <p><strong>想要查看文件的信息，必须要知道文件的路径。</strong></p>
 <p>下面通过一个案例演示获取文件信息：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -722,7 +722,7 @@ func printMessage(filePath string) {
 <h3 id="73">7.3 文件路径</h3>
 <p>与文件路径相关的方法如表：</p>
 <p><img alt="image-20201130164248411" src="../../imgs/image-20201130164248411.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -754,13 +754,13 @@ func main() {
 <p><strong>创建目录时，如果目录存在，则创建失败。Go语言提供了两种方法。</strong></p>
 <p><strong>1. os.Mkdir()</strong></p>
 <p>os.MKdir()仅创建一层目录。官方文档解释如下所示。</p>
-<pre><code class="language-go">// Mkdir creates a new directory with the specified name and permission
+<pre><code class="language-c++">// Mkdir creates a new directory with the specified name and permission
 // bits (before umask).
 // If there is an error, it will be of type *PathError.
 </code></pre>
 <p><strong>2. os.MKdirAll()</strong></p>
 <p>os.MKdirAll()创建多层目录。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -785,7 +785,7 @@ func main() {
 </code></pre>
 <h4 id="_10">创建文件</h4>
 <p>os.Create()创建文件，如果文件存在，会将其覆盖。官方文档解释如下所示。</p>
-<pre><code class="language-go">// Create creates or truncates the named file. If the file already exists,
+<pre><code class="language-c++">// Create creates or truncates the named file. If the file already exists,
 // it is truncated. If the file does not exist, it is created with mode 0666
 // (before umask). If successful, methods on the returned File can
 // be used for I/O; the associated file descriptor has mode O_RDWR.
@@ -795,7 +795,7 @@ func Create(name string) (*File, error) {
 }
 </code></pre>
 <p><strong>该函数本质上是在调用os.OpenFile()函数。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -815,7 +815,7 @@ func main() {
 <h4 id="_11">打开和关闭文件</h4>
 <p>打开文件：让当前的程序和指定的文件建立一个链接。</p>
 <p>os.Open()函数本质上是在调用os.OpenFile()函数。</p>
-<pre><code class="language-go">// Open opens the named file for reading. If successful, methods on
+<pre><code class="language-c++">// Open opens the named file for reading. If successful, methods on
 // the returned file can be used for reading; the associated file
 // descriptor has mode O_RDONLY.
 // If there is an error, it will be of type *PathError.
@@ -823,7 +823,7 @@ func Open(name string) (*File, error) {
     return OpenFile(name, O_RDONLY, 0)
 }
 </code></pre>
-<pre><code class="language-go">// OpenFile is the generalized open call; most users will use Open
+<pre><code class="language-c++">// OpenFile is the generalized open call; most users will use Open
 // or Create instead. It opens the named file with specified flag
 // (O_RDONLY etc.). If the file does not exist, and the O_CREATE flag
 // is passed, it is created with mode perm (before umask). If successful,
@@ -841,7 +841,7 @@ func OpenFile(name string, flag int, perm FileMode) (*File, error) {
 }
 </code></pre>
 <p><strong>示例：</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -875,7 +875,7 @@ file2.close()
 <h4 id="_12">删除文件</h4>
 <p>删除文件有两种方法，如下所示：</p>
 <p><img alt="image-20201130172314163" src="../../imgs/image-20201130172314163.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -909,7 +909,7 @@ func main() {
 </code></pre>
 <h4 id="_13">读取文件</h4>
 <p><strong>读取文件数据</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -948,7 +948,7 @@ whw
  */
 </code></pre>
 <h4 id="_14">写入文件</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -983,7 +983,7 @@ func main() {
 </code></pre>
 <h4 id="_15">复制文件</h4>
 <p>Go语言提供了copyFile()方法，用来复制文件。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -1023,7 +1023,7 @@ func copyFile(destFile, srcFile string)(int64, error){
 <h3 id="75-ioutil">7.5 ioutil包</h3>
 <p>ioutil包的核心函数如表所示：</p>
 <p><img alt="image-20201130175908962" src="../../imgs/image-20201130175908962.png" /></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -1101,9 +1101,9 @@ func main() {
 <p>bufio 模块提供了几个默认splitFunc，能够满足大部分场景的需求，如下表所示：</p>
 <p><img alt="image-20201130200428793" src="../../imgs/image-20201130200428793.png" /></p>
 <p>可以为Scanner指定splitFunc，方法如下所示：</p>
-<pre><code class="language-go">scanner.split(bufio.ScanWords)
+<pre><code class="language-c++">scanner.split(bufio.ScanWords)
 </code></pre>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;bufio&quot;
@@ -1159,7 +1159,7 @@ dfs
 <li>ReadString() ***</li>
 </ol>
 <p>ReadString()功能同ReadBytes()，只不过返回的是一个字符串。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;bufio&quot;
@@ -1208,7 +1208,7 @@ func testReader(){
 <p>（4）如果缓冲区的可用容量不足以放下p，且此时缓冲区有内容，则用p把缓冲区填满，把缓冲区所有内容写入文件，并清空缓冲区。</p>
 <p>（5）判断p的剩余内容大小能否放到缓冲区，如果能放下则把内容放到缓冲区，同情况（2）。</p>
 <p>（6）如果p的剩余内容依旧大于缓冲区（注意此时缓冲区是空的），则把p的剩余内容直接写入文件，同情况（3）。</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;bufio&quot;

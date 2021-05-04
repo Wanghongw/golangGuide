@@ -149,7 +149,7 @@
                     <li class="toctree-l1"><a class="reference internal" href="../7/">07 网编并发</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/1%E5%B9%B6%E5%8F%91/">01 并发</a>
                     </li>
@@ -223,10 +223,10 @@ func funcName(param1 type1, param2 type2,...)(output1 type1, output2 type2,...){
 <p><strong>函数体</strong>：函数定义的代码集合，是能够被重复调用的代码片段。</p>
 <h5 id="2">2. 参数类型简写</h5>
 <p>在参数列表中，如果有多个参数变量，则以逗号分隔；如果相邻变量是同类型，则可以将类型省略。语法格式如下所示：</p>
-<pre><code class="language-go">func add (a,b int){}
+<pre><code class="language-c++">func add (a,b int){}
 </code></pre>
 <p><strong>go语言的函数支持可变参数。接受变参的函数有着不定数量的参数，语法结构如下：</strong></p>
-<pre><code class="language-go">func myfunc(arg ...int){}
+<pre><code class="language-c++">func myfunc(arg ...int){}
 </code></pre>
 <p><strong>arg ...int告诉Go这个函数接受不定数量的参数。</strong></p>
 <p><strong>注意，这些参数的类型全部是int。在函数体中，变量arg是一个int的slice（切片）。</strong></p>
@@ -237,8 +237,10 @@ func funcName(param1 type1, param2 type2,...)(output1 type1, output2 type2,...){
 <p>全局变量可以在任何函数中使用。Go语言程序中全局变量与局部变量名称可以相同，但是函数内的局部变量会被优先考虑。</p>
 <p>函数中定义的参数称为形式参数，形式参数会作为函数的局部变量来使用。</p>
 <p>为了让大家更直观地理解作用域，下面通过一个案例加以分析：</p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
+
 import &quot;fmt&quot;
+
 // 声明全局变量
 var a1 int = 7
 var b1 int = 9
@@ -271,7 +273,7 @@ func main() {
 <p>在Go语言中，函数也是一种类型，可以和其他类型（如int32、float等等）一样被保存在变量中。</p>
 <p><strong>在Go语言中可以通过type来定义一个自定义类型。函数的参数完全相同（包括参数类型、个数、顺序），函数返回值相同。</strong></p>
 <h5 id="_5">函数变量案例一</h5>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import (
     &quot;fmt&quot;
     &quot;strings&quot;
@@ -307,7 +309,7 @@ func StringToLower2(str string, f caseFunc) string{
 </code></pre>
 <p><strong>在上例中，第24行声明了函数StringToLower()，第二个传入参数为一个函数类型变量f。第7行调用了函数StringToLower()，第二个参数传入了在第13行声明的函数processCase()。这样在函数StringToLower()中可以通过函数变量f执行函数processCase()。第28行将参数相同的函数类型声明为新的类型caseFunc，那么caseFunc就代表着这一种函数变量使用在StringToLower2()中。</strong></p>
 <h5 id="_6">函数变量案例二</h5>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -362,12 +364,12 @@ slice =  [1 2 3 4 5 7]
 <h3 id="42">4.2 匿名函数 ***</h3>
 <p>Go语言支持匿名函数，即在需要使用函数时再定义函数。匿名函数没有函数名，只有函数体，函数可以作为一种类型被赋值给变量，<strong>匿名函数也往往以变量方式被传递</strong>。</p>
 <p><strong>匿名函数经常被用于实现回调函数、闭包等。</strong>语法格式如下所示：</p>
-<pre><code class="language-go">func(参数列表)(返回参数列表){
+<pre><code class="language-c++">func(参数列表)(返回参数列表){
   // 函数体
 }
 </code></pre>
 <h5 id="1_1">1. 在定义时调用匿名函数</h5>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     func(data int){
@@ -377,7 +379,7 @@ func main(){
 //hello! 250
 </code></pre>
 <h5 id="2_1">2. 将匿名函数赋值给变量</h5>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     f := func(data string){
@@ -388,7 +390,7 @@ func main(){
 //火影whw
 </code></pre>
 <h5 id="3">3. 匿名函数用作回调函数 ***</h5>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -442,7 +444,7 @@ func visit(lst []float64, f func(float64)){
 </ul>
 <p><strong>由于闭包函数“捕获”了和它在同一作用域的其他常量和变量，所以当闭包在任何地方被调用，闭包都可以使用这些常量或者变量。它不关心这些变量是否已经超出作用域，只要闭包还在使用这些变量，这些变量就依然存在。</strong></p>
 <p><strong>没有使用闭包进行计数的代码：</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     for i:=0;i&lt;5;i++{
@@ -465,7 +467,7 @@ i=4 4
 */
 </code></pre>
 <h4 id="3_1">3.闭包实现计数及说明</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     pos := adder()
@@ -512,7 +514,7 @@ i=5 sum1=25 sum2=30 30
 <p>（3）当我们反复调用pos函数的时候，因为sum是初始化一次，因此每次调用都会进行累计。</p>
 <p><strong>（4）我们要搞清楚闭包的关键，就要分析出返回的函数它使用(引用)到哪些变量，因为函数和它引用到的变量共同构成闭包</strong></p>
 <h4 id="41_1">4.闭包的最佳实践1</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     myfunc := Counter()
@@ -541,11 +543,11 @@ func Counter() func() int{
 </code></pre>
 <h4 id="52">5.闭包的最佳实践2</h4>
 <p>要求：</p>
-<pre><code class="language-go">1、函数 makeSuffix(suffix string) 可以接受一个文件后缀(比如.jpg)，返回一个闭包。
+<pre><code class="language-c++">1、函数 makeSuffix(suffix string) 可以接受一个文件后缀(比如.jpg)，返回一个闭包。
 2、调用闭包，可以传入一个文件名，如果该文件名没有指定后缀，就返回文件名.jpg，如果有后缀了就返回原文件。
 3、strings.HasSuffix函数可以判断某个字符串是否有指定的后缀。
 </code></pre>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import (
     &quot;fmt&quot;
@@ -575,14 +577,14 @@ func main() {
 <p>（2）比传统方法的好处是：传统的方法需要每次都传入后缀名（比如.mp4），而闭包可以保留上次引用的某个值，所以我们传入一次即可反复使用！</p>
 <h3 id="7">7 可变参数</h3>
 <p>如果一个函数的参数，类型一致，但个数不定，可以使用函数的可变参数。语法格式如下所示</p>
-<pre><code class="language-go">func 函数名(参数名 ...类型)[返回值列表]{
+<pre><code class="language-c++">func 函数名(参数名 ...类型)[返回值列表]{
   // 函数体
 }
 </code></pre>
 <p>该语法格式定义了一个接受任何数目、任何类型参数的函数。</p>
 <p><strong>这里特殊的语法是三个点“...”，</strong>在一个变量后面加上三个点，表示从该处开始接受可变参数。</p>
 <p><strong>当要传递若干个值到可变参数函数中时，可以手动书写每个参数，也可以将一个slice传递给该函数，通过“...”可以将slice中的参数对应地传递给函数。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -632,7 +634,7 @@ func GetScore(scores ...float64)(sum, avg float64,count int){
 <p>例如：变量b的值为156，存储在内存地址0x1040a124。变量a持有b的地址，则a被认为指向b。如图4.12所示。</p>
 <p><img alt="image-20201024163544887" src="../../imgs/image-20201024163544887.png" /></p>
 <p><strong>在Go语言中使用取地址符（＆）来获取变量的地址，一个变量前使用＆，会返回该变量的内存地址。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     a := 10
@@ -646,10 +648,10 @@ func main(){
 </ul>
 <h4 id="_8">声明指针</h4>
 <p>声明指针，*T是指针变量的类型，它指向T类型的值。</p>
-<pre><code class="language-go">var 指针变量名 *指针类型
+<pre><code class="language-c++">var 指针变量名 *指针类型
 </code></pre>
 <p>*号用于指定变量是一个指针：</p>
-<pre><code class="language-go">var ip *int  // 指向整型的指针
+<pre><code class="language-c++">var ip *int  // 指向整型的指针
 var fp *float32 // 指向浮点型的指针
 </code></pre>
 <p>指针使用流程如下：</p>
@@ -660,7 +662,7 @@ var fp *float32 // 指向浮点型的指针
 </ul>
 <p><strong>获取指针指向的变量值：在指针类型的变量前加上 * 号（前缀），如*a。</strong></p>
 <h4 id="_9">指针示例一</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     // 声明实际变量
@@ -692,12 +694,12 @@ func main(){
 <h4 id="_11">空指针</h4>
 <p>在Go语言中，当一个指针被定义后没有分配到任何变量时，它的值为nil。nil指针也称为空指针。nil在概念上和其他语言的null、None、NULL一样，都指代零值或空值。</p>
 <p>假设指针变量命名为ptr。空指针判断如下：</p>
-<pre><code class="language-go">if ptr != nil // ptr不是空指针
+<pre><code class="language-c++">if ptr != nil // ptr不是空指针
 if ptr == nil // ptr是空指针
 </code></pre>
 <h3 id="_12">使用指针***</h3>
 <h4 id="1_3">1. 通过指针修改变量的数值</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     b := 996
@@ -714,7 +716,7 @@ b的新值: 997
 */
 </code></pre>
 <h4 id="2_3">2. 使用指针作为函数的参数</h4>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -734,10 +736,10 @@ func change(val *int){
 <p><strong>将基本数据类型的指针作为函数的参数，可以实现对传入数据的修改，这是因为指针作为函数的参数只是复制了一个指针，指针指向的内存没有发生改变。</strong></p>
 <h3 id="_13">指针数组</h3>
 <p>指针数组：就是元素为指针类型的数组。</p>
-<pre><code class="language-go">var ptr [3]*string
+<pre><code class="language-c++">var ptr [3]*string
 </code></pre>
 <p><strong>有一个元素个数与之相同的数组，将该数组中每个元素的地址赋值给该指针数组。也就是说该指针数组与某一个数组完全对应。可以通过*指针变量获取到该地址所对应的数值。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 
 import &quot;fmt&quot;
 
@@ -770,11 +772,11 @@ func main() {
 <p>如果一个指针变量存放的又是另一个指针变量的地址，则称这个指针变量为指向指针的指针变量。当定义一个指向指针的指针变量时，第一个指针存放第二个指针的地址，第二个指针存放变量的地址，如图4.19所示。</p>
 <p><img alt="image-20201024171840961" src="../../imgs/image-20201024171840961.png" /></p>
 <p>指向指针的指针变量声明格式如下。</p>
-<pre><code class="language-go">var ptr **int
+<pre><code class="language-c++">var ptr **int
 </code></pre>
 <p>以上指向指针的指针变量为整型。</p>
 <p><strong>访问指向指针的指针变量值需要使用两个 * 号。</strong></p>
-<pre><code class="language-go">package main
+<pre><code class="language-c++">package main
 import &quot;fmt&quot;
 func main(){
     var a string
