@@ -73,6 +73,42 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">01 并发</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#81-goroutines">8.1 Goroutines</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#82-clock">8.2 示例:并发的clock服务❓</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#83-echo">8.3 示例:并发的echo服务❓</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#84-channels">8.4✨ Channels</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#channel">创建channel</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_1">channel的类型及比较</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_2">channel的发送与接收</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_3">关闭channel</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bufferedunbuffered-channel">buffered与unbuffered channel</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#841-channel">8.4.1✨ 不带缓存的channel</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">重要特性</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#happens-before">happens before</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_4">同步channel的示例</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#842-channelpipeline">8.4.2✨ 串联的channel(pipeline)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#843-channel">8.4.3✨ 单方向的channel</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#844-channel">8.4.4✨ 带缓存的channel</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -112,7 +148,8 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="81-goroutines">8.1 Goroutines</h4>
+                <h2 id="_1"></h2>
+<h3 id="81-goroutines">8.1 Goroutines</h3>
 <p>在Go语言中，每一个并发的执行单元叫作一个goroutine。设想这里的一个程序有两个函数，一个函数做计算，另一个输出结果，假设两个函数没有相互之间的调用关系。一个线性的程序会先调用其中的一个函数，然后再调用另一个。如果程序中包含多个goroutine，对两个函数的调用则可能发生在同一时刻。马上就会看到这样的一个程序。</p>
 <p>如果你使用过操作系统或者其它语言提供的线程，那么你可以简单地把goroutine类比作一个线程，这样你就可以写出一些正确的程序了。goroutine和线程的本质区别会在9.8节中讲。</p>
 <p><strong>当一个程序启动时，其主函数即在一个单独的goroutine中运行，我们叫它main goroutine。新的goroutine会用go语句来创建。在语法上，go语句是一个普通的函数或方法调用前加上关键字go。</strong></p>
@@ -154,11 +191,11 @@ func fib(x int) int{
 <p><strong>主函数返回时，所有的goroutine都会被直接打断，程序退出。</strong></p>
 <p><strong>❗️除了从主函数退出或者直接终止程序之外，没有其它的编程方法能够让一个goroutine来打断另一个的执行。</strong></p>
 <p><strong>❗️但是之后可以看到一种方式来实现这个目的，通过goroutine之间的通信来让一个goroutine请求其它的goroutine，并让被请求的goroutine自行结束执行。</strong></p>
-<h4 id="82-clock">8.2 示例:并发的clock服务❓</h4>
+<h3 id="82-clock">8.2 示例:并发的clock服务❓</h3>
 <p>...</p>
-<h4 id="83-echo">8.3 示例:并发的echo服务❓</h4>
+<h3 id="83-echo">8.3 示例:并发的echo服务❓</h3>
 <p>...</p>
-<h4 id="84-channels">8.4✨ Channels</h4>
+<h3 id="84-channels">8.4✨ Channels</h3>
 <p><strong>如果说goroutine是Go语言程序的并发体的话，那么channels则是它们之间的通信机制。</strong></p>
 <p><strong>一个channel是一个通信机制，它可以让一个goroutine通过它给另一个goroutine发送值信息。</strong></p>
 <p><strong>每个channel都有一个特殊的类型，也就是channels可发送数据的类型。</strong></p>
@@ -195,8 +232,8 @@ x = &lt;-ch // a receive expression in an assignment statement
 ch = make(chan int, 0) // unbuffered channel
 ch = make(chan int, 3) // buffered channel with capacity 3
 </code></pre>
-<h4 id="841-channel">8.4.1✨ 不带缓存的channel</h4>
-<h4 id="_1">重要特性</h4>
+<h3 id="841-channel">8.4.1✨ 不带缓存的channel</h3>
+<h4 id="_2">重要特性</h4>
 <p><strong>❗️一个基于无缓存Channels的发送操作将导致发送者goroutine阻塞，直到另一个goroutine在相同的Channels上执行接收操作，当发送的值通过Channels成功传输之后，两个goroutine可以继续执行后面的语句。反之，如果接收操作先发生，那么接收者goroutine也将阻塞，直到有另一个goroutine在相同的Channels上执行发送操作。</strong></p>
 <p><strong>基于无缓存Channels的发送和接收操作将导致两个goroutine做一次<code>同步</code>操作。因为这个原因，无缓存Channels有时候也被称为<code>同步Channels</code>。</strong></p>
 <p><strong>当通过一个无缓存Channels发送数据时，接收者收到数据发生在再次唤醒发送者goroutine之前（译注：<code>happens before</code>，这是Go语言并发内存模型的一个关键术语！）。</strong></p>
@@ -209,9 +246,9 @@ ch = make(chan int, 3) // buffered channel with capacity 3
 <pre><code class="language-go">
 
 </code></pre>
-<h4 id="842-channelpipeline">8.4.2✨ 串联的channel(pipeline)</h4>
-<h4 id="843-channel">8.4.3✨ 单方向的channel</h4>
-<h4 id="844-channel">8.4.4✨ 带缓存的channel</h4>
+<h3 id="842-channelpipeline">8.4.2✨ 串联的channel(pipeline)</h3>
+<h3 id="843-channel">8.4.3✨ 单方向的channel</h3>
+<h3 id="844-channel">8.4.4✨ 带缓存的channel</h3>
               
             </div>
           </div>
