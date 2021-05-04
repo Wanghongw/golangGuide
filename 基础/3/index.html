@@ -60,9 +60,11 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">03 函数闭包指针</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#4-go">4 Go语言的函数与指针</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#41">4.1 函数 ***</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_1">函数声明</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">函数声明</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#1">1. 函数定义解析</a>
     </li>
@@ -70,13 +72,13 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_2">变量作用域</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">变量作用域</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">函数变量(函数作为值)***</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">函数变量(函数作为值)***</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#_4">函数变量案例一</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">函数变量案例一</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#_5">函数变量案例二</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">函数变量案例二</a>
     </li>
         </ul>
     </li>
@@ -91,6 +93,50 @@
     <li class="toctree-l3"><a class="reference internal" href="#3">3. 匿名函数用作回调函数 ***</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-closure">6 闭包closure ***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_2">1. 闭包的概念</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_2">2. 闭包的优点</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_1">3.闭包实现计数及说明</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#41_1">4.闭包的最佳实践1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52">5.闭包的最佳实践2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7 可变参数</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8 递归函数</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9 指针</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">指针的概念</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">声明指针</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">指针示例一</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">指针示例二</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">空指针</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_12">使用指针***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_3">1. 通过指针修改变量的数值</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_3">2. 使用指针作为函数的参数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">指针数组</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">指针的指针</a>
     </li>
     </ul>
                     </li>
@@ -144,18 +190,19 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="4-go">4 Go语言的函数与指针</h2>
+                <h2 id="_1"></h2>
+<h3 id="4-go">4 Go语言的函数与指针</h3>
 <h3 id="41">4.1 函数 ***</h3>
 <p>Go 语言从设计上对函数进行了优化和改进，让函数使用起来更加方便。</p>
 <p>因为Go语言的函数本身可以作为值进行传递，既支持匿名函数和闭包，又能满足接口，所以 Go 语言的函数属于一等公民。</p>
-<h4 id="_1">函数声明</h4>
+<h4 id="_2">函数声明</h4>
 <p>普通函数需要先声明才能调用，一个函数的声明包括参数和函数名等。编译器通过声明才能了解函数应该怎样在调用代码和函数体之间传入参数和返回参数。语法格式如下所示：</p>
-<pre><code class="language-go">func 函数名(参数列表)(返回参数列表){
+<pre><code class="language-c">func 函数名(参数列表)(返回参数列表){
   // 函数体
 }
 
 func funcName(param1 type1, param2 type2,...)(output1 type1, output2 type2,...){
-  // 逻辑代码
+  // `
   // 返回多个值
   return value1, value2,...
 }
@@ -183,7 +230,7 @@ func funcName(param1 type1, param2 type2,...)(output1 type1, output2 type2,...){
 </code></pre>
 <p><strong>arg ...int告诉Go这个函数接受不定数量的参数。</strong></p>
 <p><strong>注意，这些参数的类型全部是int。在函数体中，变量arg是一个int的slice（切片）。</strong></p>
-<h4 id="_2">变量作用域</h4>
+<h4 id="_3">变量作用域</h4>
 <p>作用域是变量、常量、类型、函数的作用范围。</p>
 <p>在函数体内声明的变量称为局部变量，它们的作用域只在函数体内，生命周期同所在的函数。参数和返回值变量也是局部变量。</p>
 <p>在函数体外声明的变量称为全局变量，全局变量可以在整个包甚至外部包（被导出后）使用。全局变量的生命周期同main()。</p>
@@ -220,10 +267,10 @@ func main() {
 }
 </code></pre>
 <p><strong>运行结果可以看出，同样变量名的局部变量和全局变量，同一作用域内优先使用局部变量，正所谓“强龙不压地头蛇”。</strong></p>
-<h4 id="_3">函数变量(函数作为值)***</h4>
+<h4 id="_4">函数变量(函数作为值)***</h4>
 <p>在Go语言中，函数也是一种类型，可以和其他类型（如int32、float等等）一样被保存在变量中。</p>
 <p><strong>在Go语言中可以通过type来定义一个自定义类型。函数的参数完全相同（包括参数类型、个数、顺序），函数返回值相同。</strong></p>
-<h5 id="_4">函数变量案例一</h5>
+<h5 id="_5">函数变量案例一</h5>
 <pre><code class="language-go">package main
 import (
     &quot;fmt&quot;
@@ -259,7 +306,7 @@ func StringToLower2(str string, f caseFunc) string{
 }
 </code></pre>
 <p><strong>在上例中，第24行声明了函数StringToLower()，第二个传入参数为一个函数类型变量f。第7行调用了函数StringToLower()，第二个参数传入了在第13行声明的函数processCase()。这样在函数StringToLower()中可以通过函数变量f执行函数processCase()。第28行将参数相同的函数类型声明为新的类型caseFunc，那么caseFunc就代表着这一种函数变量使用在StringToLower2()中。</strong></p>
-<h5 id="_5">函数变量案例二</h5>
+<h5 id="_6">函数变量案例二</h5>
 <pre><code class="language-go">package main
 
 import &quot;fmt&quot;
@@ -373,8 +420,8 @@ func visit(lst []float64, f func(float64)){
 平方:1 平方:81 平方:256 平方:625 平方:1089
 */
 </code></pre>
-<h2 id="6-closure">6 闭包closure ***</h2>
-<h3 id="1_2">1. 闭包的概念</h3>
+<h3 id="6-closure">6 闭包closure ***</h3>
+<h4 id="1_2">1. 闭包的概念</h4>
 <p>闭包并不是什么新奇的概念，它早在高级语言开始发展的年代就产生了。闭包（Closure）是词法闭包（Lexical Closure）的简称。</p>
 <p><strong>闭包是由函数和与其相关的引用环境组合而成的实体。在实现深约束时，需要创建一个能显式表示引用环境的东西，并将它与相关的子程序捆绑在一起，这样捆绑起来的整体被称为闭包。函数 + 引用环境 = 闭包。</strong></p>
 <p>闭包只是在形式和表现上像函数，但实际上不是函数。函数是一些可执行的代码，这些代码在函数被定义后就确定了，不会在执行时发生变化，所以一个函数只有一个实例。</p>
@@ -382,7 +429,7 @@ func visit(lst []float64, f func(float64)){
 <p><strong>闭包在某些编程语言中被称为Lambda表达式。</strong></p>
 <p>函数本身不存储任何信息，只有与引用环境结合后形成的闭包才具有“记忆性”。函数是编译器静态的概念，而闭包是运行期动态的概念。</p>
 <p><strong>对象是附有行为的数据，而闭包是附有数据的行为。</strong></p>
-<h3 id="2_2">2. 闭包的优点</h3>
+<h4 id="2_2">2. 闭包的优点</h4>
 <p>（1）加强模块化。闭包有益于模块化编程，便于以简单的方式开发较小的模块，从而提高开发速度和程序的可复用性。和没有使用闭包的程序相比，使用闭包可将模块划分得更小。</p>
 <p>比如要计算一个数组中所有数字的和，只需要循环遍历数组，把遍历到的数字加起来就行了。如果现在要计算所有元素的积，又或者要打印所有的元素呢？解决这些问题都要对数组进行遍历，如果是在不支持闭包的语言中，程序员不得不一次又一次重复地写循环语句。而这在支持闭包的语言中是不必要的。这种处理方法多少有点像回调函数，不过要比回调函数写法更简单，功能更强大。</p>
 <p>（2）抽象。闭包是数据和行为的组合，这使得闭包具有较好的抽象能力。</p>
@@ -417,7 +464,7 @@ i=3 3
 i=4 4
 */
 </code></pre>
-<h3 id="3_1">3.闭包实现计数及说明</h3>
+<h4 id="3_1">3.闭包实现计数及说明</h4>
 <pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
@@ -464,7 +511,7 @@ i=5 sum1=25 sum2=30 30
 <p>（2）adder函数返回的是一个匿名函数，但是这个匿名函数引用到函数外的sum，因此这个匿名函数就和sum形成一个整体，构成闭包。</p>
 <p>（3）当我们反复调用pos函数的时候，因为sum是初始化一次，因此每次调用都会进行累计。</p>
 <p><strong>（4）我们要搞清楚闭包的关键，就要分析出返回的函数它使用(引用)到哪些变量，因为函数和它引用到的变量共同构成闭包</strong></p>
-<h3 id="41_1">4.闭包的最佳实践1</h3>
+<h4 id="41_1">4.闭包的最佳实践1</h4>
 <pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
@@ -492,7 +539,7 @@ func Counter() func() int{
     return res
 }
 </code></pre>
-<h3 id="52">5.闭包的最佳实践2</h3>
+<h4 id="52">5.闭包的最佳实践2</h4>
 <p>要求：</p>
 <pre><code class="language-go">1、函数 makeSuffix(suffix string) 可以接受一个文件后缀(比如.jpg)，返回一个闭包。
 2、调用闭包，可以传入一个文件名，如果该文件名没有指定后缀，就返回文件名.jpg，如果有后缀了就返回原文件。
@@ -526,7 +573,7 @@ func main() {
 <p><strong>上面代码的说明:</strong></p>
 <p>（1）返回的匿名函数和 makeSuffix(suffix string)的 suffix 变量，组合成一个闭包，因为返回的函数引用到了suffix这个变量了！</p>
 <p>（2）比传统方法的好处是：传统的方法需要每次都传入后缀名（比如.mp4），而闭包可以保留上次引用的某个值，所以我们传入一次即可反复使用！</p>
-<h2 id="7">7 可变参数</h2>
+<h3 id="7">7 可变参数</h3>
 <p>如果一个函数的参数，类型一致，但个数不定，可以使用函数的可变参数。语法格式如下所示</p>
 <pre><code class="language-go">func 函数名(参数名 ...类型)[返回值列表]{
   // 函数体
@@ -563,7 +610,7 @@ func GetScore(scores ...float64)(sum, avg float64,count int){
 <li>一个函数最多只能有一个可变参数。</li>
 <li>若参数列表中还有其他类型参数，则可变参数写在所有参数的最后。</li>
 </ul>
-<h2 id="8">8 递归函数</h2>
+<h3 id="8">8 递归函数</h3>
 <p>在函数内部，可以调用其他函数。如果一个函数在内部调用自身，那么这个函数就是递归函数。递归函数必须满足以下两个条件。</p>
 <p>（1）在每一次调用自己时，必须是（在某种意义上）更接近于解。</p>
 <p>（2）必须有一个终止处理或计算的准则。</p>
@@ -578,8 +625,8 @@ func GetScore(scores ...float64)(sum, avg float64,count int){
 <li>使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层，每当函数返回，栈就会减一层。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。</li>
 <li>使用递归函数的优点是逻辑简单清晰，缺点是过深的调用会导致栈溢出。</li>
 </ul>
-<h2 id="9">9 指针</h2>
-<h3 id="_6">指针的概念</h3>
+<h3 id="9">9 指针</h3>
+<h4 id="_7">指针的概念</h4>
 <p>指针是存储另一个变量的内存地址的变量。变量是一种使用方便的占位符，<strong>变量都指向计算机的内存地址</strong>。</p>
 <p><strong>一个指针变量可以指向任何一个值的内存地址。</strong></p>
 <p>例如：变量b的值为156，存储在内存地址0x1040a124。变量a持有b的地址，则a被认为指向b。如图4.12所示。</p>
@@ -597,7 +644,7 @@ func main(){
 <li>Go语言指针的最大特点是：指针不能运算（不同于C语言）。</li>
 <li>在Go语言中如果对指针进行运算会报错！</li>
 </ul>
-<h3 id="_7">声明指针</h3>
+<h4 id="_8">声明指针</h4>
 <p>声明指针，*T是指针变量的类型，它指向T类型的值。</p>
 <pre><code class="language-go">var 指针变量名 *指针类型
 </code></pre>
@@ -612,7 +659,7 @@ var fp *float32 // 指向浮点型的指针
 <li>访问指针变量中指向地址的值。</li>
 </ul>
 <p><strong>获取指针指向的变量值：在指针类型的变量前加上 * 号（前缀），如*a。</strong></p>
-<h3 id="_8">指针示例一</h3>
+<h4 id="_9">指针示例一</h4>
 <pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
@@ -638,17 +685,17 @@ func main(){
     fmt.Printf(&quot;*&amp;a的类型:%T,值是:%v \n&quot;,*&amp;a,*&amp;a)//*&amp;a的类型:int,值是:120 
 }
 </code></pre>
-<h3 id="_9"><strong>指针示例二</strong></h3>
+<h4 id="_10"><strong>指针示例二</strong></h4>
 <p><img alt="image-20201024165219705" src="../../imgs/image-20201024165219705.png" /></p>
 <p>结果如下：</p>
 <p><img alt="image-20201024165236414" src="../../imgs/image-20201024165236414.png" /></p>
-<h3 id="_10">空指针</h3>
+<h4 id="_11">空指针</h4>
 <p>在Go语言中，当一个指针被定义后没有分配到任何变量时，它的值为nil。nil指针也称为空指针。nil在概念上和其他语言的null、None、NULL一样，都指代零值或空值。</p>
 <p>假设指针变量命名为ptr。空指针判断如下：</p>
 <pre><code class="language-go">if ptr != nil // ptr不是空指针
 if ptr == nil // ptr是空指针
 </code></pre>
-<h3 id="_11">使用指针***</h3>
+<h3 id="_12">使用指针***</h3>
 <h4 id="1_3">1. 通过指针修改变量的数值</h4>
 <pre><code class="language-go">package main
 import &quot;fmt&quot;
@@ -685,7 +732,7 @@ func change(val *int){
 }
 </code></pre>
 <p><strong>将基本数据类型的指针作为函数的参数，可以实现对传入数据的修改，这是因为指针作为函数的参数只是复制了一个指针，指针指向的内存没有发生改变。</strong></p>
-<h3 id="_12">指针数组</h3>
+<h3 id="_13">指针数组</h3>
 <p>指针数组：就是元素为指针类型的数组。</p>
 <pre><code class="language-go">var ptr [3]*string
 </code></pre>
@@ -719,7 +766,7 @@ func main() {
     */
 }
 </code></pre>
-<h3 id="_13">指针的指针</h3>
+<h3 id="_14">指针的指针</h3>
 <p>如果一个指针变量存放的又是另一个指针变量的地址，则称这个指针变量为指向指针的指针变量。当定义一个指向指针的指针变量时，第一个指针存放第二个指针的地址，第二个指针存放变量的地址，如图4.19所示。</p>
 <p><img alt="image-20201024171840961" src="../../imgs/image-20201024171840961.png" /></p>
 <p>指向指针的指针变量声明格式如下。</p>

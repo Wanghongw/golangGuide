@@ -64,6 +64,8 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">05 结构体接口与反射</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#7-go">7 Go语言面向对象编程 *</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#71-go">7.1 Go语言面向对象</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#72">7.2 结构体 ***</a>
@@ -72,33 +74,33 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#74">7.4 接口 ***</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_1">概念及代码演示</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">概念及代码演示</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_2">接口的说明 *</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">接口的说明 *</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#2">2个特殊例子*</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">接口编程的最佳实践*</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">接口编程的最佳实践*</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#vs">实现接口 VS 继承 *</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#duck-typing">duck typing</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">多态</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">多态</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_5">解释多态现象的案例*</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">解释多态现象的案例*</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_6">接口体现多态的两种形式 *</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">接口体现多态的两种形式 *</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_7">空接口 *</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">空接口 *</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#75">7.5 类型断言/接口对象转型 *</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_8">最佳实践一：循环判断传入参数的类型</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">最佳实践一：循环判断传入参数的类型</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_9">最佳实践二：根据不同类型执行不同的方法</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">最佳实践二：根据不同类型执行不同的方法</a>
     </li>
         </ul>
     </li>
@@ -150,7 +152,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="7-go">7 Go语言面向对象编程 *</h2>
+                <h2 id="_1"></h2>
+<h3 id="7-go">7 Go语言面向对象编程 *</h3>
 <h3 id="71-go">7.1 Go语言面向对象</h3>
 <p>其他编程语言大多使用关键字“类”（class）来定义封装对象，表示该类的具体特征，然而Go并不是一个纯面向对象的编程语言。Go语言采用更灵活的“结构体”替代了“类”。</p>
 <p>Go语言并没有提供类（class），但是它提供了结构体（struct），方法（method）可以在结构体上添加。与类相似，结构体提供了捆绑数据和方法的行为。</p>
@@ -893,7 +896,7 @@ func (e Employee) SayHi(){
 */
 </code></pre>
 <h3 id="74">7.4 接口 ***</h3>
-<h4 id="_1">概念及代码演示</h4>
+<h4 id="_2">概念及代码演示</h4>
 <p><strong>面向对象语言中，接口用于定义对象的行为。接口只指定对象应该做什么，实现这种行为的方式（实现细节）由对象来决定。</strong></p>
 <p><strong>在Go语言中，接口是一组方法签名。</strong></p>
 <p><strong>接口指定了类型应该具有的方法，类型决定了如何实现这些方法。</strong></p>
@@ -983,7 +986,7 @@ func main() {
     */
 }
 </code></pre>
-<h4 id="_2">接口的说明 *</h4>
+<h4 id="_3">接口的说明 *</h4>
 <p>interface类型可以定义一组方法，但是这些不需要实现。并且interface不能包含任何变量。到某个自定义类型（比如结构体Phone）要使用的时候，在根据具体情况把这些方法写出来（实现接口）。</p>
 <p><img alt="image-20201203151635092" src="../../imgs/image-20201203151635092.png" /></p>
 <p>（1）接口里的<strong>所有方法都没有方法体</strong>，即接口的方法都是没有实现的方法。接口体现了程序设计的<strong>多态</strong>和<strong>高内聚低耦合</strong>的思想。</p>
@@ -1185,7 +1188,7 @@ func main() {
 </code></pre>
 <p>（2）接口继承的情况下，如果两个基类中有相同的方法，这样不行！会报错！</p>
 <p><img alt="image-20201203162449242" src="../../imgs/image-20201203162449242.png" /></p>
-<h4 id="_3">接口编程的最佳实践*</h4>
+<h4 id="_4">接口编程的最佳实践*</h4>
 <p><strong>实现对Hero结构体切片的排序：sort.Sort(data Interface)</strong></p>
 <pre><code class="language-go">package main
 
@@ -1382,11 +1385,11 @@ func main() {
 </code></pre>
 <p><strong>可以看出，一个函数如果接受接口类型作为参数，那么实际上它可以传入该接口的任意一个实现类的对象作为参数。定义一个接口变量，实际上可以赋值给任意一个实现了该接口的对象。</strong></p>
 <p><strong>如果定义了一个接口类型的容器（数组或切片），实际上该容器可以存储任意一个实现类对象。</strong></p>
-<h4 id="_4">多态</h4>
+<h4 id="_5">多态</h4>
 <p>如果有几个相似而不完全相同的对象，有时人们要求在向它们发出同一个消息时，它们的反应各不相同，分别执行不同的操作。这种情况就是多态现象。例如，甲、乙、丙三个班都是初中一年级，学生们有基本相同的属性和行为，在同时听到上课铃声的时候，他们会分别走向三个不同的教室，而不会走向同一个教室。</p>
 <p><strong>多态就是事物的多种形态，Go语言中的多态性是在接口的帮助下实现的——定义接口类型，创建实现该接口的结构体对象。</strong></p>
 <p><strong>定义接口类型的对象，可以保存实现该接口的任何类型的值。Go语言接口变量的这个特性实现了Go语言中的多态性。接口类型的对象，不能访问其实现类中的属性字段。</strong></p>
-<h4 id="_5">解释多态现象的案例*</h4>
+<h4 id="_6">解释多态现象的案例*</h4>
 <pre><code class="language-go">package main
 
 import &quot;fmt&quot;
@@ -1477,7 +1480,7 @@ func calculateNetIncome(ic []Income) float64{
 <p><strong>可以看出，尽管添加了新的收入方式，但没有对calculateNetIncome()函数做任何更改，全靠多态性起作用。</strong></p>
 <p><strong>由于新的Advertisement类型也实现了Income接口，可以将它添加到ic切片中。</strong></p>
 <p><strong>CalculateNetIncome()函数在没有任何更改的情况下工作，因为它可以调用Advertisement类型的calculate()和source()方法。</strong></p>
-<h4 id="_6">接口体现多态的两种形式 *</h4>
+<h4 id="_7">接口体现多态的两种形式 *</h4>
 <p><strong>1、多态参数</strong></p>
 <p>在前面的Usb接口案例，usb Usb既可以接收手机变量，又可以接收相机变量，体现了Usb接口的多态参数。</p>
 <p><strong>2、多态数组</strong></p>
@@ -1535,7 +1538,7 @@ func main() {
     */
 }
 </code></pre>
-<h4 id="_7">空接口 *</h4>
+<h4 id="_8">空接口 *</h4>
 <p>空接口中没有任何方法。任意类型都可以实现该接口。空接口这样定义：interface{}，也就是包含0个方法（method）的interface。空接口可表示任意数据类型，类似于Java中的object。</p>
 <p>空接口常用于以下情形：</p>
 <ul>
@@ -1630,7 +1633,7 @@ func main() {
 <pre><code class="language-go">接口对象.[type]
 </code></pre>
 <p><strong>此方式配合switch...case语句使用。</strong></p>
-<h4 id="_8">最佳实践一：循环判断传入参数的类型</h4>
+<h4 id="_9">最佳实践一：循环判断传入参数的类型</h4>
 <p>接下来通过一个案例实现接口对象转型<strong>（注意三角形Triangle结构体的那个系统接口）：</strong></p>
 <pre><code class="language-go">package main
 
@@ -1759,7 +1762,7 @@ showInfo函数中～main.Circle, {1}
 Triangle对象，属性分别是：3.00, 4.00, 5.00
 */
 </code></pre>
-<h4 id="_9">最佳实践二：根据不同类型执行不同的方法</h4>
+<h4 id="_10">最佳实践二：根据不同类型执行不同的方法</h4>
 <pre><code class="language-go">package main
 
 import &quot;fmt&quot;

@@ -68,9 +68,87 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">07 网编并发</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#go">* Go语言网络编程相关</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#http">HTTP协议客户端实现</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#http_1">HTTP协议服务端实现</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#go_1">* Go语言并发编程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1 并发与并行</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2 进程与线程</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">并发相关的概念</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">进程与线程的联系</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-goroutine">3 Goroutine介绍</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-goroutine">4 创建Goroutine</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#goroutine">普通函数创建Goroutine</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#goroutine_1">匿名函数创建Goroutine</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-goroutine">5 启动多个Goroutine</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-channel">6 channel ***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#channel">创建channel类型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_1">使用channel发送数据</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_2">通过channel接受数据</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1_1">1. 阻塞接受数据</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2_1">2. 忽略接受数据</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3">3. 循环接受数据</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_3">channel是阻塞的</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_4">关闭channel</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_5">缓冲channel</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_6">使用channel模拟生产者消费者模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#channel_7">单向channel</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-timechannel">7 time包与channel包相关的函数</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#timer">Timer结构体</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#newtimer">NewTimer()函数</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#after">After()函数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8-select">8 Select分支语句</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9-sync">9 sync包 ***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">同步等待组</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">互斥锁</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">读写互斥锁</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">条件变量</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -116,7 +194,8 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="go">* Go语言网络编程相关</h2>
+                <h2 id="_1"></h2>
+<h3 id="go">* Go语言网络编程相关</h3>
 <h3 id="http">HTTP协议客户端实现</h3>
 <p>Go语言标准库内置了net/http包，涵盖了HTTP客户端和服务端具体的实现方式。</p>
 <p>内置的net/http包提供了最简洁的HTTP客户端实现方式，无须借助第三方网络通信库，就可以直接使用HTTP中用得最多的GET和POST方式请求数据。</p>
@@ -183,18 +262,18 @@ func CheckErr(err error){
 </code></pre>
 <h3 id="http_1">HTTP协议服务端实现</h3>
 <p>（略）</p>
-<h2 id="go_1">* Go语言并发编程</h2>
+<h3 id="go_1">* Go语言并发编程</h3>
 <h3 id="1">1 并发与并行</h3>
 <p>并发（Concurrency）是同时处理许多个任务，实际上是把任务在不同的时间点交给处理器进行处理，在微观层面，任务不会同时运行。</p>
 <p>并行（Parallelism）是把每一个任务分配给每一个处理器独立完成，多个任务一定是同时运行。并行就是同时做很多事情，乍听起来可能与并发类似，但实际上是不同的。</p>
 <p><img alt="image-20201127161129676" src="../../imgs/image-20201127161129676.png" /></p>
 <h3 id="2">2 进程与线程</h3>
-<h4 id="_1">并发相关的概念</h4>
+<h4 id="_2">并发相关的概念</h4>
 <p>程序是编译好的二进制文件，在磁盘上，不占用系统资源（CPU、内存、设备）。</p>
 <p>进程是活跃的程序，占用系统资源，在内存中执行。程序运行起来，产生一个进程。</p>
 <p>程序就像是剧本，进程就像是演戏，同一个剧本可以在多个舞台同时上演。同样，同一个程序也可以加载为不同的进程（彼此之间互不影响），比如同时运行两个QQ。</p>
 <p>线程也叫轻量级进程，通常一个进程包含若干个线程。线程可以利用进程所拥有的资源。在引入线程的操作系统中，通常都是把进程作为分配资源的基本单位，而把线程作为独立运行和独立调度的基本单位，比如音乐进程，可以一边查看排行榜一边听音乐，互不影响。</p>
-<h4 id="_2">进程与线程的联系</h4>
+<h4 id="_3">进程与线程的联系</h4>
 <p>进程和线程是操作系统级别的两个基本概念。计算机的核心是CPU，它承担了所有的计算任务，就像一座工厂，时刻在运行。进程就好比工厂的车间，它代表CPU所能处理的单个任务；进程是一个容器。线程就好比车间里的工人。一个进程可以包括多个线程，线程是容器中的工作单位。</p>
 <h3 id="3-goroutine">3 Goroutine介绍</h3>
 <p><strong>协裎的概念</strong></p>
@@ -723,7 +802,7 @@ func main() {
 <h3 id="9-sync">9 sync包 ***</h3>
 <p>sync包提供了互斥锁。除了Once和WaitGroup类型，其余多数适用于低水平的程序，多数情况下，高水平的同步使用channel通信性能会更优一些。sync包类型的值不应被复制。</p>
 <p><strong>前面的案例中，一般使用time.Sleep()函数，通过睡眠将主Goroutine阻塞至所有Goroutine结束。而更好的做法是使用WaitGroup来实现。</strong></p>
-<h4 id="_3">同步等待组</h4>
+<h4 id="_4">同步等待组</h4>
 <p>自己的博客有相关的总结：[<a href="https://www.cnblogs.com/paulwhw/p/13904235.html">使用waitgroup在循环中开Goroutine处理并发任务</a>]</p>
 <pre><code class="language-go">package main
 
@@ -762,7 +841,7 @@ func DeltaTask(i int8){
 }
 // 耗时：3.005254124s
 </code></pre>
-<h4 id="_4">互斥锁</h4>
+<h4 id="_5">互斥锁</h4>
 <p>Mutex是一个互斥锁，可以创建为其他结构体的字段；零值为解锁状态。Mutex类型的锁和 Goroutine无关，可以由不同的Goroutine加锁和解锁。</p>
 <p>一个售票实例：</p>
 <pre><code class="language-go">package main
@@ -815,7 +894,7 @@ func saleTickets(name string, wg *sync.WaitGroup){
     }
 }
 </code></pre>
-<h4 id="_5">读写互斥锁</h4>
+<h4 id="_6">读写互斥锁</h4>
 <p>RWMutex是读写互斥锁，简称读写锁。该锁可以同时被多个读取者持有或被唯一个写入者持有。RWMutex可以创建为其他结构体的字段；零值为解锁状态。RWMutex类型的锁也和Goroutine无关，可以由不同的Goroutine加读取锁/写入锁和解读取锁/写入锁。</p>
 <p>读写锁的使用中，写操作都是互斥的，读和写是互斥的，<strong>读和读不互斥</strong>。</p>
 <p><strong>该规则可以理解为，可以多个Goroutine同时读取数据，但是只允许一个Goroutine写入数据。</strong></p>
@@ -826,7 +905,7 @@ func saleTickets(name string, wg *sync.WaitGroup){
 </code></pre>
 <p>Rlocker()方法返回一个读写锁，通过调用rw.Rlock()和rw.RUnlock()实现了Locker接口。</p>
 <p><img alt="image-20201127192243736" src="../../imgs/image-20201127192243736.png" /></p>
-<h4 id="_6">条件变量</h4>
+<h4 id="_7">条件变量</h4>
 <p><strong>Cond</strong>实现了一个条件变量，一个Goroutine集合地，供Goroutine等待或者宣布某事件的发生。</p>
 <p>每个Cond实例都有一个相关的锁（一般是<em>Mutex或</em>RWMutex类型的值），它须在改变条件时或者调用Wait()方法时保持锁定。Cond可以创建为其他结构体的字段，Cond在开始使用后不能被复制。条件变量sync.Cond是多个Goroutine等待或接受通知的集合地。</p>
 <p><img alt="image-20201127192429197" src="../../imgs/image-20201127192429197.png" /></p>

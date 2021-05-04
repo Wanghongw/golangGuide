@@ -58,31 +58,33 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">02 容器类型</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#5-go">5 Go语言的内置容器</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#51">5.1 数组</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_1">数组的概念</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">数组的概念</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_2">数组的语法</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">数组的语法</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_3">数组的长度</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">数组的长度</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_4">遍历数组</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">遍历数组</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_5">多维数组——主要是二维数组</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">多维数组——主要是二维数组</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#_6">二维数组</a>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">二维数组</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_7">数组是值类型</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">数组是值类型</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#52">5.2 切片***</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#_8">切片的概念</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">切片的概念</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_9">切片的语法</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">切片的语法</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#1">1. 声明切片</a>
     </li>
@@ -94,7 +96,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_10">切片是引用类型 ***</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">切片是引用类型 ***</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#appendcopy">append()和copy()函数</a>
     </li>
@@ -174,13 +176,14 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="5-go">5 Go语言的内置容器</h2>
+                <h2 id="_1"></h2>
+<h3 id="5-go">5 Go语言的内置容器</h3>
 <h3 id="51">5.1 数组</h3>
-<h4 id="_1">数组的概念</h4>
+<h4 id="_2">数组的概念</h4>
 <p>数组是相同类型的一组数据构成的长度固定的序列，其中数据类型包含了基本数据类型、复合数据类型和自定义类型。数组中的每一项被称为数组的元素。数组名是数组的唯一标识符，数组的每一个元素都是没有名字的，只能通过索引下标（位置）进行访问。</p>
 <p>因为数组的内存是一段连续的存储区域，所以数组的检索速度是非常快的；</p>
 <p>但是数组也有一定的缺陷，就是定义后长度不能更改。</p>
-<h4 id="_2">数组的语法</h4>
+<h4 id="_3">数组的语法</h4>
 <p>Go语言数组声明需要指定元素类型及元素个数，语法格式如下。</p>
 <pre><code class="language-go">var 变量名 [数组长度] 数据类型
 </code></pre>
@@ -196,7 +199,7 @@
 <pre><code class="language-go">nums[4] = 23
 </code></pre>
 <p>以上实例读取数组第5个元素。数组元素可以通过索引（位置）来读取（或者修改），索引从0开始，第1个元素索引为0，第2个索引为1，以此类推。</p>
-<h4 id="_3">数组的长度</h4>
+<h4 id="_4">数组的长度</h4>
 <p>数组的长度是数组的一个内置常量，通过将数组作为参数传递给 len()函数，可以获得数组的长度。忽略声明中数组的长度并将其替换为“…”，编译器可以找到长度。接下来使用案例演示获取数组长度的方式：</p>
 <pre><code class="language-go">package main
 import &quot;fmt&quot;
@@ -206,7 +209,7 @@ func main(){
     fmt.Printf(&quot;len_a:%d,len_b:%d \n&quot;,len(a),len(b)) //len_a:4,len_b:4 
 }
 </code></pre>
-<h4 id="_4">遍历数组</h4>
+<h4 id="_5">遍历数组</h4>
 <pre><code class="language-go">package main
 
 import &quot;fmt&quot;
@@ -225,12 +228,12 @@ func main(){
     }
 }
 </code></pre>
-<h4 id="_5">多维数组——主要是二维数组</h4>
+<h4 id="_6">多维数组——主要是二维数组</h4>
 <p>由于数据的复杂程度不一样，数组可能有多个下标。一般将数组元素下标的个数称为维数，根据维数，可将数组分为一维数组、二维数组、三维数组、四维数组等。二维及以上的数组可称为多维数组。</p>
 <p>Go语言的多维数组声明方式：</p>
 <pre><code class="language-go">var variable_name [SIZE1][SIZE2]...[SIZEn] variable_type
 </code></pre>
-<h5 id="_6">二维数组</h5>
+<h5 id="_7">二维数组</h5>
 <p>在实际的工作中，仅仅使用一维数组是远远不够的，例如，一个学习小组有10个人，每个人有3门课的考试成绩，如果使用一维数组解决是很麻烦的。这时，可以使用二维数组。</p>
 <p>二维数组是最简单的多维数组，二维数组的本质也是一个一维数组，只是数组成员由基本数据类型变成了构造数据类型（一维数组）。</p>
 <p>二维数组的定义方式如下。</p>
@@ -253,7 +256,7 @@ func main(){
 <p><img alt="image-20201024182517611" src="../../imgs/image-20201024182517611.png" /></p>
 <p>结果如下：</p>
 <p><img alt="image-20201024182529965" src="../../imgs/image-20201024182529965.png" /></p>
-<h4 id="_7">数组是值类型</h4>
+<h4 id="_8">数组是值类型</h4>
 <p>Go语言中的数组并非引用类型，而是值类型。</p>
 <p>当它们被分配给一个新变量时，会将原始数组复制出一份分配给新变量。</p>
 <p><strong>因此对新变量进行更改，原始数组不会有反应。</strong></p>
@@ -269,7 +272,7 @@ func main(){
 </code></pre>
 <p><strong>注意：将数组作为函数参数进行传递，它们将通过值传递，原始数组依然保持不变。</strong></p>
 <h3 id="52">5.2 切片***</h3>
-<h4 id="_8">切片的概念</h4>
+<h4 id="_9">切片的概念</h4>
 <p>Go语言中数组的长度不可改变，但在很多应用场景中，在初始定义数组时，数组的长度并不可预知，这样的序列集合无法满足要求。Go中提供了另外一种内置类型“切片（slice）”，弥补了数组的缺陷。切片是可变长度的序列，序列中每个元素都是相同的类型。切片的语法和数组很像。</p>
 <p>从底层来看，切片引用了数组的对象。切片可以追加元素，在追加时可能使切片的容量增大。与数组相比，切片不需要设定长度，在[]中不用设定值，相对来说比较自由。</p>
 <p>切片的数据结构可理解为一个结构体，这个结构体包含了三个元素。</p>
@@ -278,7 +281,7 @@ func main(){
 <li>长度，即切片的长度。</li>
 <li>容量，也就是切片开始位置到数组的最后位置的长度。</li>
 </ul>
-<h4 id="_9">切片的语法</h4>
+<h4 id="_10">切片的语法</h4>
 <h5 id="1">1. 声明切片</h5>
 <p>声明一个未指定长度的数组来定义切片，具体示例如下：</p>
 <pre><code class="language-go">var indentifier []type
@@ -342,7 +345,7 @@ func printSlice(x []int){
 <h4 id="lencap">Len()和cap()函数</h4>
 <p>切片的长度是切片中元素的数量。<strong>切片的容量是从创建切片的索引开始的底层数组中元素的数量。</strong></p>
 <p>切片可以通过len()方法获取长度，可以通过cap()方法获取容量。数组计算cap()结果与len()相同。</p>
-<h3 id="_10">切片是引用类型 ***</h3>
+<h3 id="_11">切片是引用类型 ***</h3>
 <p><strong>切片没有自己的任何数据。它只是底层数组的一个引用。对切片所做的任何修改都将反映在底层数组中。数组是值类型，而切片是引用类型，两者的区别如下例所示：</strong></p>
 <pre><code class="language-go">package main
 
