@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>02 容器类型 - Golang服务端入门与进阶指南</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="../.." class="icon icon-home"> Golang服务端入门与进阶指南</a>
         <div role="search">
@@ -45,93 +47,99 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">个人实践总结</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../个人实践/">01 个人博客总结</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Golang基础总结</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../1/">01 基础知识到循环</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">02 容器类型</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#5-go">5 Go语言的内置容器</a></li>
-    
+                <p class="caption"><span class="caption-text">个人实践总结</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/">01 个人博客总结</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Golang基础总结</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../1/">01 基础知识到循环</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">02 容器类型</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#51">5.1 数组</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#51">5.1 数组</a></li>
-        
-            <li><a class="toctree-l4" href="#52">5.2 切片***</a></li>
-        
-            <li><a class="toctree-l4" href="#_10">切片是引用类型 ***</a></li>
-        
-            <li><a class="toctree-l4" href="#appendcopy_1">append()与copy()的对比案例一***</a></li>
-        
-            <li><a class="toctree-l4" href="#appendcopy_2">append()与copy()的对比案例二***</a></li>
-        
-            <li><a class="toctree-l4" href="#53-map">5.3 map</a></li>
-        
-            <li><a class="toctree-l4" href="#map">map的语法 ***</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#_1">数组的概念</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">数组的语法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">数组的长度</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">遍历数组</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">多维数组——主要是二维数组</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">二维数组</a>
+    </li>
         </ul>
-    
-
-    </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../3/">03 函数闭包指针</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../4/">04 值/引用类型与异常处理</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../5/">05 结构体接口与反射</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../6/">06 各种内置模块的使用</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../7/">07 网编并发</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">The Go Programming Language</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../go圣经/入门/">01 入门</a>
-                </li>
-    </ul>
-	    </li>
-          
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">数组是值类型</a>
+    </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#52">5.2 切片***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">切片的概念</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">切片的语法</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1">1. 声明切片</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2">2. 初始化</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lencap">Len()和cap()函数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">切片是引用类型 ***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#appendcopy">append()和copy()函数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#appendcopy_1">append()与copy()的对比案例一***</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#appendcopy_2">append()与copy()的对比案例二***</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#53-map">5.3 map</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#map">map的语法 ***</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#map_1">map的声明</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#map_2">map的初始化赋值和遍历</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#map_3">查看元素是否在map中 ***</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#delete">delete()函数</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#map_4">map是引用类型</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3/">03 函数闭包指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../4/">04 值/引用类型与异常处理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../5/">05 结构体接口与反射</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../6/">06 各种内置模块的使用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../7/">07 网编并发</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/%E5%85%A5%E9%97%A8/">01 入门</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -160,6 +168,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -173,27 +182,23 @@
 <p>但是数组也有一定的缺陷，就是定义后长度不能更改。</p>
 <h4 id="_2">数组的语法</h4>
 <p>Go语言数组声明需要指定元素类型及元素个数，语法格式如下。</p>
-<pre><code class="go">var 变量名 [数组长度] 数据类型
+<pre><code class="language-go">var 变量名 [数组长度] 数据类型
 </code></pre>
-
 <p>以上为一维数组的定义方式，数组长度必须是整数且大于0，未初始化的数组不是nil，也就是说没有空数组（与切片不同）。</p>
 <p>初始化数组语法格式如下。</p>
-<pre><code class="go">var nums = [5]{1,2,3,4,5}
+<pre><code class="language-go">var nums = [5]{1,2,3,4,5}
 </code></pre>
-
 <p>初始化数组中 {} 中的元素个数不能大于 [] 中的数字。</p>
 <p><strong>如果忽略 [] 中的数字，不设置数组长度，Go语言会根据元素的个数来设置数组的长度。可以忽略声明中数组的长度并将其替换为“…”。编译器会自动计算长度。语法格式如下。</strong></p>
-<pre><code class="go">var nums = [...]int{1,2,3,4,5,6}
+<pre><code class="language-go">var nums = [...]int{1,2,3,4,5,6}
 </code></pre>
-
 <p>修改数组内容，语法格式如下:</p>
-<pre><code class="go">nums[4] = 23
+<pre><code class="language-go">nums[4] = 23
 </code></pre>
-
 <p>以上实例读取数组第5个元素。数组元素可以通过索引（位置）来读取（或者修改），索引从0开始，第1个元素索引为0，第2个索引为1，以此类推。</p>
 <h4 id="_3">数组的长度</h4>
 <p>数组的长度是数组的一个内置常量，通过将数组作为参数传递给 len()函数，可以获得数组的长度。忽略声明中数组的长度并将其替换为“…”，编译器可以找到长度。接下来使用案例演示获取数组长度的方式：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
     a := [4]int64{12,22,33,55}
@@ -201,9 +206,8 @@ func main(){
     fmt.Printf(&quot;len_a:%d,len_b:%d \n&quot;,len(a),len(b)) //len_a:4,len_b:4 
 }
 </code></pre>
-
 <h4 id="_4">遍历数组</h4>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -221,34 +225,29 @@ func main(){
     }
 }
 </code></pre>
-
 <h4 id="_5">多维数组——主要是二维数组</h4>
 <p>由于数据的复杂程度不一样，数组可能有多个下标。一般将数组元素下标的个数称为维数，根据维数，可将数组分为一维数组、二维数组、三维数组、四维数组等。二维及以上的数组可称为多维数组。</p>
 <p>Go语言的多维数组声明方式：</p>
-<pre><code class="go">var variable_name [SIZE1][SIZE2]...[SIZEn] variable_type
+<pre><code class="language-go">var variable_name [SIZE1][SIZE2]...[SIZEn] variable_type
 </code></pre>
-
 <h5 id="_6">二维数组</h5>
 <p>在实际的工作中，仅仅使用一维数组是远远不够的，例如，一个学习小组有10个人，每个人有3门课的考试成绩，如果使用一维数组解决是很麻烦的。这时，可以使用二维数组。</p>
 <p>二维数组是最简单的多维数组，二维数组的本质也是一个一维数组，只是数组成员由基本数据类型变成了构造数据类型（一维数组）。</p>
 <p>二维数组的定义方式如下。</p>
-<pre><code class="go">var arrayName [x][y] variable_type
+<pre><code class="language-go">var arrayName [x][y] variable_type
 </code></pre>
-
 <p>二维数组初始化，语法格式如下:</p>
-<pre><code class="go">a = [3][4]int{
+<pre><code class="language-go">a = [3][4]int{
   {0,1,2,3}, // 第一行索引为0
   {4,5,6,7}, // 第二行索引为1
   {8,9,10,11} // 第三行索引为2
 }
 </code></pre>
-
 <p>上述定义的二维数组共包含3×4个元素，即12个元素。接下来，我们通过一张图来描述二维数组a的元素分布情况，如图5.3所示。</p>
 <p><img alt="image-20201024182415812" src="../../imgs/image-20201024182415812.png" /></p>
 <p>二维数组元素通过指定坐标来访问，如数组中的行索引与列索引。语法格式如下。</p>
-<pre><code class="go">int val = a[2][3]
+<pre><code class="language-go">int val = a[2][3]
 </code></pre>
-
 <p>以上实例访问了二维数组val第3行的第4个元素。</p>
 <p>二维数组可以使用循环嵌套来输出元素，具体语法通过案例演示</p>
 <p><img alt="image-20201024182517611" src="../../imgs/image-20201024182517611.png" /></p>
@@ -258,7 +257,7 @@ func main(){
 <p>Go语言中的数组并非引用类型，而是值类型。</p>
 <p>当它们被分配给一个新变量时，会将原始数组复制出一份分配给新变量。</p>
 <p><strong>因此对新变量进行更改，原始数组不会有反应。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
     a := [...]string{&quot;USA&quot;,&quot;China&quot;,&quot;India&quot;,&quot;Germany&quot;}
@@ -268,7 +267,6 @@ func main(){
     fmt.Println(&quot;b&gt;&gt;&gt;&quot;,b) // [Singapore China India Germany]
 }
 </code></pre>
-
 <p><strong>注意：将数组作为函数参数进行传递，它们将通过值传递，原始数组依然保持不变。</strong></p>
 <h3 id="52">5.2 切片***</h3>
 <h4 id="_8">切片的概念</h4>
@@ -283,20 +281,17 @@ func main(){
 <h4 id="_9">切片的语法</h4>
 <h5 id="1">1. 声明切片</h5>
 <p>声明一个未指定长度的数组来定义切片，具体示例如下：</p>
-<pre><code class="go">var indentifier []type
+<pre><code class="language-go">var indentifier []type
 </code></pre>
-
 <p>切片不需要说明长度。采用该声明方式且未初始化的切片为空切片。该切片默认为nil，长度为0。</p>
 <p><strong>使用make()函数来创建切片，语法格式如下:</strong></p>
-<pre><code class="go">var slice1 []type make([]type,len)
+<pre><code class="language-go">var slice1 []type make([]type,len)
 </code></pre>
-
 <p><strong>使用make()函数来创建切片可以简写为如下格式:</strong></p>
-<pre><code class="go">slice1 := make([]type,len)
+<pre><code class="language-go">slice1 := make([]type,len)
 </code></pre>
-
 <p>创建切片时可以指定容量，其中capacity为可选参数：make([]T, length,capacity)。详情如下：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
     var nums = make([]int,3,5)
@@ -305,33 +300,27 @@ func main(){
     //len=3 cap=5 slice=[0 0 0]
 }
 </code></pre>
-
 <h5 id="2">2. 初始化</h5>
 <p>（1）直接初始化切片，语法格式如下：</p>
-<pre><code class="go">s := [] int {1,2,3}
+<pre><code class="language-go">s := [] int {1,2,3}
 </code></pre>
-
 <p>（2）通过数组截取来初始化切片，语法格式如下:</p>
-<pre><code class="go">arr := [5]int {1,2,3,4,5}
+<pre><code class="language-go">arr := [5]int {1,2,3,4,5}
 s := arr[:]
 </code></pre>
-
 <p>切片中包含数组所有元素，语法格式如下。</p>
-<pre><code class="go">s := arr[startIndex : endIndex]
+<pre><code class="language-go">s := arr[startIndex : endIndex]
 </code></pre>
-
 <p>将arr中从下标startIndex到endIndex-1下的元素创建为一个新的切片（前闭后开），长度为endIndex-startIndex。</p>
 <p>缺省endIndex时表示一直到arr的最后一个元素，语法格式如下。</p>
-<pre><code class="go">s := arr[startIndex:]
+<pre><code class="language-go">s := arr[startIndex:]
 </code></pre>
-
 <p>缺省startIndex时表示从arr的第一个元素开始，语法格式如下。</p>
-<pre><code class="go">s := arr[:endIndex]
+<pre><code class="language-go">s := arr[:endIndex]
 </code></pre>
-
 <p>（3）通过切片截取来初始化切片。</p>
 <p>可以通过设置下限及上限来设置截取切片：[lower-bound:upper-bound]:</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 import &quot;fmt&quot;
 func main(){
     // 创建切片
@@ -350,13 +339,12 @@ func printSlice(x []int){
     fmt.Printf(&quot;len=%d,cap=%d,slice=%v\n&quot;,len(x),cap(x),x)
 }
 </code></pre>
-
 <h4 id="lencap">Len()和cap()函数</h4>
 <p>切片的长度是切片中元素的数量。<strong>切片的容量是从创建切片的索引开始的底层数组中元素的数量。</strong></p>
 <p>切片可以通过len()方法获取长度，可以通过cap()方法获取容量。数组计算cap()结果与len()相同。</p>
 <h3 id="_10">切片是引用类型 ***</h3>
 <p><strong>切片没有自己的任何数据。它只是底层数组的一个引用。对切片所做的任何修改都将反映在底层数组中。数组是值类型，而切片是引用类型，两者的区别如下例所示：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -378,7 +366,6 @@ func main(){
     fmt.Println(&quot;b=&quot;,b,&quot;d=&quot;,d) // b= [2 999 5] d= [2 999 5]
 }
 </code></pre>
-
 <h4 id="appendcopy">append()和copy()函数</h4>
 <p><strong>两个方法不适用于数组。</strong></p>
 <p>函数append()用于往切片中追加新元素，可以向切片里面追加一个或者多个元素，也可以追加一个切片。append()会改变切片所引用的数组的内容，从而影响到引用同一数组的其他切片。当使用append()追加元素到切片时，如果容量不够（也就是(cap-len) == 0），Go就会创建一个新的内存地址来储存元素。</p>
@@ -388,7 +375,7 @@ func main(){
 <p><strong>删除中间元素的方法：</strong></p>
 <p><img alt="image-20201024190457761" src="../../imgs/image-20201024190457761.png" /></p>
 <h3 id="appendcopy_1">append()与copy()的对比案例一***</h3>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -438,9 +425,8 @@ func main(){
     printSlices(&quot;numbers1&quot;,numbers1)//numbers1   addr:0xc000136000 len=4 cap=38 slice=[888 100 300 400]
 }
 </code></pre>
-
 <h3 id="appendcopy_2">append()与copy()的对比案例二***</h3>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -482,7 +468,6 @@ sa addr:0xc0000be000 len=10 cap=16 slice=[0 1 2 3 4 5 6 7 8 9]
 sa addr:0xc0000be000 len=10 cap=16 slice=[0 1 2 3 4 5 6 7 8 9]
 */
 </code></pre>
-
 <h3 id="53-map">5.3 map</h3>
 <p><strong>map的概念</strong></p>
 <p>Go 语言提供了内置类型 map，它将一个值与一个键关联起来，可以使用相应的键检索值。这种结构在其他资料中译成地图、映射或字典，但是在Go语言中习惯上翻译成集合。map正如现实生活中的字典一样，使用词-语义进行数据的构建，其中词对应键（key），语义对应值（value），即键与值构成映射的关系，通常将两者称为键值对，这样通过键可以快速找到对应的值。map是一种集合，可以像遍历数组或切片那样去遍历它。因为map是由Hash表实现的，所以对map的读取顺序不固定。</p>
@@ -495,18 +480,16 @@ sa addr:0xc0000be000 len=10 cap=16 slice=[0 1 2 3 4 5 6 7 8 9]
 <h4 id="map_1">map的声明</h4>
 <p>可以使用var关键字来定义map，也可以使用内建函数make()。</p>
 <p>（1）使用var关键字定义map</p>
-<pre><code class="go">var 变量名 map[key类型] value类型
+<pre><code class="language-go">var 变量名 map[key类型] value类型
 </code></pre>
-
 <p><strong>使用var关键字声明map，未初始化的map的默认值是nil。</strong></p>
 <p><strong>nil map不能存放键值对。如果要使用map存储键值对，必须在声明时初始化，或者使用make()函数分配到内存空间。</strong></p>
 <p>（2）使用make()函数</p>
-<pre><code class="go">变量名 := make(map[key类型]value类型)
+<pre><code class="language-go">变量名 := make(map[key类型]value类型)
 </code></pre>
-
 <p>该声明方式，如果不初始化map，map也不等于nil。</p>
 <h4 id="map_2">map的初始化赋值和遍历</h4>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -556,11 +539,10 @@ func main(){
     }
 }
 </code></pre>
-
 <h4 id="map_3">查看元素是否在map中 ***</h4>
 <p><strong>可以通过key获取map中对应的value值。语法为：map[key]。当key不存在时，会得到该value值类型的默认值，比如string类型得到空字符串，int类型得到0，程序不会报错。</strong></p>
 <p><strong>所以可以通过value, ok := map[key]获知key/value是否存在。ok是bool型，如果ok是true，则该键值对存在，否则不存在。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -593,10 +575,9 @@ func main(){
     }
 }
 </code></pre>
-
 <h4 id="delete">delete()函数</h4>
 <p>delete(map, key) 函数用于删除集合的某个元素，参数为map和其对应的key。删除函数不返回任何值。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -623,12 +604,11 @@ func main(){
     fmt.Println(&quot;清空后：&quot;,country) //清空后： map[]
 }
 </code></pre>
-
 <p><strong>Go语言没有为map提供清空所有元素的函数，清空map的唯一办法是重新make一个新的map。不用担心垃圾回收的效率，Go语言的垃圾回收比写一个清空函数更高效。</strong></p>
 <h4 id="map_4">map是引用类型</h4>
 <p>map与切片相似，都是引用类型。</p>
 <p><strong>将一个map赋值给一个新的变量时，它们指向同一块内存（底层数据结构）。因此，修改两个变量的内容都能够引起它们所指向的数据发生变化。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -671,7 +651,7 @@ func main(){
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -681,7 +661,7 @@ func main(){
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -695,6 +675,11 @@ func main(){
     <script>var base_url = '../..';</script>
     <script src="../../js/theme.js" defer></script>
       <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

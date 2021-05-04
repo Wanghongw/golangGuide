@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>07 网编并发 - Golang服务端入门与进阶指南</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="../.." class="icon icon-home"> Golang服务端入门与进阶指南</a>
         <div role="search">
@@ -45,114 +47,41 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">个人实践总结</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../个人实践/">01 个人博客总结</a>
-                </li>
+                <p class="caption"><span class="caption-text">个人实践总结</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/">01 个人博客总结</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Golang基础总结</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../1/">01 基础知识到循环</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2/">02 容器类型</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3/">03 函数闭包指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../4/">04 值/引用类型与异常处理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../5/">05 结构体接口与反射</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../6/">06 各种内置模块的使用</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">07 网编并发</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#http">HTTP协议客户端实现</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#http_1">HTTP协议服务端实现</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Golang基础总结</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../1/">01 基础知识到循环</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../2/">02 容器类型</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../3/">03 函数闭包指针</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../4/">04 值/引用类型与异常处理</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../5/">05 结构体接口与反射</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../6/">06 各种内置模块的使用</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">07 网编并发</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#go">* Go语言网络编程相关</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#http">HTTP协议客户端实现</a></li>
-        
-            <li><a class="toctree-l4" href="#http_1">HTTP协议服务端实现</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#go_1">* Go语言并发编程</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#1">1 并发与并行</a></li>
-        
-            <li><a class="toctree-l4" href="#2">2 进程与线程</a></li>
-        
-            <li><a class="toctree-l4" href="#3-goroutine">3 Goroutine介绍</a></li>
-        
-            <li><a class="toctree-l4" href="#4-goroutine">4 创建Goroutine</a></li>
-        
-            <li><a class="toctree-l4" href="#5-goroutine">5 启动多个Goroutine</a></li>
-        
-            <li><a class="toctree-l4" href="#6-channel">6 channel ***</a></li>
-        
-            <li><a class="toctree-l4" href="#7-timechannel">7 time包与channel包相关的函数</a></li>
-        
-            <li><a class="toctree-l4" href="#8-select">8 Select分支语句</a></li>
-        
-            <li><a class="toctree-l4" href="#9-sync">9 sync包 ***</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l3"><a href="#13-go">13 Go语言密码学算法</a></li>
-    
-
-    <li class="toctree-l3"><a href="#14-beego">14 Beego框架项目实战</a></li>
-    
-
-    </ul>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">The Go Programming Language</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../go圣经/入门/">01 入门</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/%E5%85%A5%E9%97%A8/">01 入门</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -181,6 +110,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -191,7 +121,7 @@
 <p>Go语言标准库内置了net/http包，涵盖了HTTP客户端和服务端具体的实现方式。</p>
 <p>内置的net/http包提供了最简洁的HTTP客户端实现方式，无须借助第三方网络通信库，就可以直接使用HTTP中用得最多的GET和POST方式请求数据。</p>
 <p><strong>实现HTTP客户端就是客户端通过网络访问向服务端发送请求，服务端发送响应信息，并将相应信息输出到客户端的过程。实现客户端有多种方式 —— 这里只记http.NewRequest方法：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -251,7 +181,6 @@ func CheckErr(err error){
     }
 }
 </code></pre>
-
 <h3 id="http_1">HTTP协议服务端实现</h3>
 <p>（略）</p>
 <h2 id="go_1">* Go语言并发编程</h2>
@@ -282,7 +211,7 @@ func CheckErr(err error){
 <p>在函数或方法前面加上关键字go，将会同时运行一个新的Goroutine。</p>
 <p><strong>使用go关键字创建Goroutine时，被调用的函数往往没有返回值，如果有返回值也会被忽略。如果需要在Goroutine中返回数据，必须使用channel，通过channel把数据从Goroutine中作为返回值传出。</strong></p>
 <p>Go程序的执行过程是：<strong>Go程序启动时，runtime默认为main()函数创建一个Goroutine。创建和启动主Goroutine，初始化操作，执行main()函数，当main()函数结束，主Goroutine随之结束，程序结束。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -299,7 +228,6 @@ func main() {
     fmt.Println(&quot;Main function...&quot;)
 }
 </code></pre>
-
 <p>运行的结果会有2种：</p>
 <p>一种是只有main function打印出来了。</p>
 <p>另外一种是两个都打印出来了。</p>
@@ -307,7 +235,7 @@ func main() {
 <p>在go hello()后面加一个time.sleep，在这种情况下，main()的Goroutine被用来睡觉1秒。现在go hello()有足够的时间在main Goroutine终止之前执行。</p>
 <h4 id="goroutine_1">匿名函数创建Goroutine</h4>
 <p>go关键字后也可以是匿名函数或闭包。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -328,9 +256,8 @@ func main() {
     fmt.Scanln(&amp;input)
 }
 </code></pre>
-
 <h3 id="5-goroutine">5 启动多个Goroutine</h3>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -363,23 +290,20 @@ func printLetter() {
 // a12b // 四个字母的顺序每次不一样
 // main...function...
 </code></pre>
-
 <h3 id="6-channel">6 channel ***</h3>
 <p>channel即Go的通道，是协程之间的通信机制。一个channel是一条通信管道，<strong>它可以让一个协程通过它给另一个协程发送数据</strong>。</p>
 <p>每个channel都需要指定数据类型，即channel可发送数据的类型。如果使用channel发送int类型数据，可以写成chanint。数据发送的方式如同水在管道中的流动。</p>
 <p>传统的线程之间可以通过共享内存进行数据交互，不同的线程共享内存的同步问题需要使用锁来解决，这样会导致性能低下。</p>
 <p>Go语言中提倡使用channel的方式代替共享内存。换言之，Go语言主张<strong>通过数据传递来实现共享内存，而不是通过共享内存来实现数据传递。</strong></p>
 <h4 id="channel">创建channel类型</h4>
-<pre><code class="go">var  ca(channel变量) chan  int(channel类型)
+<pre><code class="language-go">var  ca(channel变量) chan  int(channel类型)
 </code></pre>
-
 <p>chan类型的空值是nil，声明后需要配合make()才能使用！</p>
 <p>channel是引用类型，需要使用make()进行创建，语法格式如下所示。</p>
-<pre><code class="go">ca := make(chan int)
+<pre><code class="language-go">ca := make(chan int)
 </code></pre>
-
 <p><strong>实例如下：</strong></p>
-<pre><code class="go">// 创建一个整型类型的channel
+<pre><code class="language-go">// 创建一个整型类型的channel
 ch1 := make(chan int) 
 
 // 创建一个空接口类型的channel，可以存放任意类型
@@ -391,12 +315,10 @@ type Student struct{
 }
 ch3 := make(chan *Student)
 </code></pre>
-
 <h4 id="channel_1">使用channel发送数据</h4>
 <p>通过channel发送数据需要使用特殊的操作符“＜-”。将数据通过channel发送的语法格式如下所示。</p>
-<pre><code class="go">channel变量  &lt;-  值
+<pre><code class="language-go">channel变量  &lt;-  值
 </code></pre>
-
 <p>channel发送的值的类型必须与channel的元素类型一致。如果接收方一直没有接收，那么发送操作将持续阻塞。此时所有的Goroutine，包括main()的Goroutine都处于等待状态。</p>
 <p>运行会提示报错：fatal error: all goroutines are asleep - deadlock!</p>
 <p><strong>使用channel时要考虑发生死锁（deadlock）的可能。如果Goroutine在一个channel上发送数据，其他的Goroutine应该接收得到数据；如果没有接收，那么程序将在运行时出现死锁。如果Goroutine正在等待从channel接收数据，其他一些Goroutine将会在该channel上写入数据；如果没有写入，程序将会死锁。</strong></p>
@@ -404,21 +326,19 @@ ch3 := make(chan *Student)
 <p>channel收发操作在不同的两个Goroutine间进行。</p>
 <h5 id="1_1">1. 阻塞接受数据</h5>
 <p>channel接收同样使用特殊的操作符“＜-”。语法格式如下所示。</p>
-<pre><code class="go">data, ok := &lt;-ch1
+<pre><code class="language-go">data, ok := &lt;-ch1
 </code></pre>
-
 <p>执行该语句时channel将会阻塞，直到接收到数据并赋值给data变量。</p>
 <p>data 表示接收到的数据。未接收到数据时，data为channel类型的零值。ok（布尔类型）表示是否接收到数据。通过ok值可以判断当前channel是否被关闭。</p>
 <h5 id="2_1">2. 忽略接受数据</h5>
 <p>接收任意数据，忽略接收的数据，语法格式如下所示。</p>
-<pre><code class="go">&lt;-ch1
+<pre><code class="language-go">&lt;-ch1
 </code></pre>
-
 <p>执行该语句时channel将会阻塞。<strong>其目的不在于接收channel中数据，而是为了阻塞Goroutine。</strong></p>
 <h5 id="3">3. 循环接受数据</h5>
 <p>循环接收数据，需要配合使用关闭channel，借助普通for循环和for ... range语句循环接收多个元素。</p>
 <p>遍历channel，遍历的结果就是接收到的数据，数据类型就是channel的数据类型。普通for循环接收channel数据，需要有break循环的条件；for … range会自动判断出channel已关闭，而无须通过判断来终止循环。循环接收数据的三种语法格式如下：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -469,10 +389,9 @@ func sendData(ch1 chan string) {
     fmt.Println(&quot;发送数据完毕...&quot;)
 }
 </code></pre>
-
 <h4 id="channel_3">channel是阻塞的</h4>
 <p>channel默认是阻塞的。当数据被发送到channel时会发生阻塞，直到有其他Goroutine从该channel中读取数据。当从channel读取数据时，读取也会被阻塞，直到其他Goroutine将数据写入该channel。这些channel的特性帮助Goroutine有效地通信，而不需要使用其他语言中的显式锁或条件变量。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -500,7 +419,6 @@ chan int
 main over...
  */
 </code></pre>
-
 <p>注意   <strong>&lt;- ch2   作用是阻塞channel等待匿名函数的Goroutine运行结束，防止主函数的Goroutine退出而导致匿名函数的Goroutine提前退出。</strong></p>
 <h4 id="channel_4">关闭channel</h4>
 <p>发送方如果数据写入完毕，需要关闭channel，用于通知接收方数据传递完毕。</p>
@@ -508,7 +426,7 @@ main over...
 <p>往关闭的channel中写入数据会报错：panic: send on closed channel。</p>
 <p>但是可以从关闭后的channel中读取数据，返回数据的默认值和false。</p>
 <p>下面通过一个案例来观察关闭channel以后是否可以写入数据：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -531,12 +449,11 @@ func main() {
     fmt.Println(&quot;main读取数据:&quot;,data, ok)
 }
 </code></pre>
-
 <h4 id="channel_5">缓冲channel</h4>
 <p>默认创建的都是非缓冲channel，读写都是即时阻塞。</p>
 <p>缓冲channel自带一块缓冲区，可以暂时存储数据，如果缓冲区满了，就会发生阻塞。</p>
 <p>下面通过案例对比缓冲channel与非缓冲channel：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -602,10 +519,9 @@ main over ......
 main over...&gt;&gt;&gt;
  */
 </code></pre>
-
 <p>运行结果来看，非缓冲channel部分的打印结果是输入数据和接收数据交替的，这说明读写都是即时阻塞。缓冲channel部分的输入数据打印完毕以后才打印接收数据，这意味着缓冲区没有满的情况下是非阻塞的。</p>
 <h4 id="channel_6">使用channel模拟生产者消费者模型</h4>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -680,21 +596,18 @@ func consumer(num int, ch1 chan int,ch chan bool){
 主线程结束......
  */
 </code></pre>
-
 <h4 id="channel_7">单向channel</h4>
 <p>channel默认都是双向的，即可读可写。定向channel也叫单向channel，只读，或只写。</p>
 <p>只读方式channel使用方式如下：</p>
-<pre><code class="go">make(&lt;- chan Type)
+<pre><code class="language-go">make(&lt;- chan Type)
 &lt;- chan
 </code></pre>
-
 <p>只写channel使用方式如下：</p>
-<pre><code class="go">make(chan &lt;- Type)
+<pre><code class="language-go">make(chan &lt;- Type)
 chan &lt;- data
 </code></pre>
-
 <p><strong>直接创建单向channel没有任何意义。通常的做法是创建双向channel，然后以单向channel的方式进行函数传递。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -747,14 +660,13 @@ main接受数据: i'm whw
 main over...
  */
 </code></pre>
-
 <h3 id="7-timechannel">7 time包与channel包相关的函数</h3>
 <h4 id="timer">Timer结构体</h4>
 <p>计时器类型表示单个事件。</p>
 <p>当计时器过期时，当前时间将被发送到c上（c是一个只读channel ＜-chan time.Time，该channel中放入的是Timer结构体），除非计时器是After()创建的。</p>
 <p>计时器必须使用NewTimer()或After()创建。</p>
 <p><strong>time.Timer结构体：</strong></p>
-<pre><code class="go">// The Timer type represents a single event.
+<pre><code class="language-go">// The Timer type represents a single event.
 // When the Timer expires, the current time will be sent on C,
 // unless the Timer was created by AfterFunc.
 // A Timer must be created with NewTimer or AfterFunc.
@@ -763,10 +675,9 @@ type Timer struct {
     r runtimeTimer
 }
 </code></pre>
-
 <h4 id="newtimer">NewTimer()函数</h4>
 <p>NewTimer()创建一个新的计时器，它会在至少持续时间d之后将当前时间发送到其channel上。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -787,10 +698,9 @@ func main() {
     fmt.Println(data)//2020-11-27 18:55:57.931412 +0800 CST m=+5.004453139
 }
 </code></pre>
-
 <h4 id="after">After()函数</h4>
 <p>After()函数相当于NewTimer(d). C。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -807,7 +717,6 @@ func main() {
     fmt.Println(data)//2020-11-27 18:59:06.895843 +0800 CST m=+5.000126362
 }
 </code></pre>
-
 <h3 id="8-select">8 Select分支语句</h3>
 <p>select语句的机制有点像switch语句，不同的是，select会随机挑选一个可通信的case来执行，如果所有case都没有数据到达，则执行default，如果没有default语句，select就会阻塞，直到有case接收到数据。</p>
 <p>（实例略）</p>
@@ -816,7 +725,7 @@ func main() {
 <p><strong>前面的案例中，一般使用time.Sleep()函数，通过睡眠将主Goroutine阻塞至所有Goroutine结束。而更好的做法是使用WaitGroup来实现。</strong></p>
 <h4 id="_3">同步等待组</h4>
 <p>自己的博客有相关的总结：[<a href="https://www.cnblogs.com/paulwhw/p/13904235.html">使用waitgroup在循环中开Goroutine处理并发任务</a>]</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -853,11 +762,10 @@ func DeltaTask(i int8){
 }
 // 耗时：3.005254124s
 </code></pre>
-
 <h4 id="_4">互斥锁</h4>
 <p>Mutex是一个互斥锁，可以创建为其他结构体的字段；零值为解锁状态。Mutex类型的锁和 Goroutine无关，可以由不同的Goroutine加锁和解锁。</p>
 <p>一个售票实例：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -907,17 +815,15 @@ func saleTickets(name string, wg *sync.WaitGroup){
     }
 }
 </code></pre>
-
 <h4 id="_5">读写互斥锁</h4>
 <p>RWMutex是读写互斥锁，简称读写锁。该锁可以同时被多个读取者持有或被唯一个写入者持有。RWMutex可以创建为其他结构体的字段；零值为解锁状态。RWMutex类型的锁也和Goroutine无关，可以由不同的Goroutine加读取锁/写入锁和解读取锁/写入锁。</p>
 <p>读写锁的使用中，写操作都是互斥的，读和写是互斥的，<strong>读和读不互斥</strong>。</p>
 <p><strong>该规则可以理解为，可以多个Goroutine同时读取数据，但是只允许一个Goroutine写入数据。</strong></p>
-<pre><code class="go">1. Lock()方法将rw锁定为写入状态，禁止其他Goroutine读取或者写入。
+<pre><code class="language-go">1. Lock()方法将rw锁定为写入状态，禁止其他Goroutine读取或者写入。
 2. Unlock()方法解除rw的写入锁，如果rw未加写入锁会导致运行时错误。
 3. RLock()方法将rw锁定为读取状态，禁止其他Goroutine写入，但不禁止读取。
 4. RUnlock()方法解除rw的读取锁，如果rw未加读取锁会导致运行时错误。
 </code></pre>
-
 <p>Rlocker()方法返回一个读写锁，通过调用rw.Rlock()和rw.RUnlock()实现了Locker接口。</p>
 <p><img alt="image-20201127192243736" src="../../imgs/image-20201127192243736.png" /></p>
 <h4 id="_6">条件变量</h4>
@@ -937,7 +843,7 @@ func saleTickets(name string, wg *sync.WaitGroup){
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../go圣经/入门/" class="btn btn-neutral float-right" title="01 入门">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../go%E5%9C%A3%E7%BB%8F/%E5%85%A5%E9%97%A8/" class="btn btn-neutral float-right" title="01 入门">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../6/" class="btn btn-neutral" title="06 各种内置模块的使用"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -952,7 +858,7 @@ func saleTickets(name string, wg *sync.WaitGroup){
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -962,20 +868,25 @@ func saleTickets(name string, wg *sync.WaitGroup){
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
         <span><a href="../6/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../go圣经/入门/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../go%E5%9C%A3%E7%BB%8F/%E5%85%A5%E9%97%A8/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
     <script>var base_url = '../..';</script>
     <script src="../../js/theme.js" defer></script>
       <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

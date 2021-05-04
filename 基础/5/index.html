@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../../img/favicon.ico">
   <title>05 结构体接口与反射 - Golang服务端入门与进阶指南</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
   <script src="../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="../.." class="icon icon-home"> Golang服务端入门与进阶指南</a>
         <div role="search">
@@ -45,89 +47,75 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">个人实践总结</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../个人实践/">01 个人博客总结</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Golang基础总结</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../1/">01 基础知识到循环</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../2/">02 容器类型</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../3/">03 函数闭包指针</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../4/">04 值/引用类型与异常处理</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">05 结构体接口与反射</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#7-go">7 Go语言面向对象编程 *</a></li>
-    
+                <p class="caption"><span class="caption-text">个人实践总结</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/">01 个人博客总结</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Golang基础总结</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../1/">01 基础知识到循环</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../2/">02 容器类型</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../3/">03 函数闭包指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../4/">04 值/引用类型与异常处理</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">05 结构体接口与反射</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#71-go">7.1 Go语言面向对象</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#72">7.2 结构体 ***</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#73">7.3 方法 ***</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#74">7.4 接口 ***</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#71-go">7.1 Go语言面向对象</a></li>
-        
-            <li><a class="toctree-l4" href="#72">7.2 结构体 ***</a></li>
-        
-            <li><a class="toctree-l4" href="#73">7.3 方法 ***</a></li>
-        
-            <li><a class="toctree-l4" href="#74">7.4 接口 ***</a></li>
-        
-            <li><a class="toctree-l4" href="#75">7.5 类型断言/接口对象转型 *</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#_1">概念及代码演示</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">接口的说明 *</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2个特殊例子*</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">接口编程的最佳实践*</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vs">实现接口 VS 继承 *</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#duck-typing">duck typing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">多态</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">解释多态现象的案例*</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">接口体现多态的两种形式 *</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">空接口 *</a>
+    </li>
         </ul>
-    
-
-    </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../6/">06 各种内置模块的使用</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../7/">07 网编并发</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">The Go Programming Language</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../go圣经/入门/">01 入门</a>
-                </li>
-    </ul>
-	    </li>
-          
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#75">7.5 类型断言/接口对象转型 *</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">最佳实践一：循环判断传入参数的类型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">最佳实践二：根据不同类型执行不同的方法</a>
+    </li>
         </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../6/">06 各种内置模块的使用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../7/">07 网编并发</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">The Go Programming Language</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../go%E5%9C%A3%E7%BB%8F/%E5%85%A5%E9%97%A8/">01 入门</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -156,6 +144,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -170,14 +159,13 @@
 <h3 id="72">7.2 结构体 ***</h3>
 <p>单一的数据类型已经满足不了现实开发需求，于是 Go 语言提供了结构体来定义复杂的数据类型。结构体是由一系列相同类型或不同类型的数据构成的数据集合。</p>
 <p>结构体的顶定义格式：</p>
-<pre><code class="go">type 类型名 struct{
+<pre><code class="language-go">type 类型名 struct{
     成员属性1 类型1
     成员属性2 类型2
     成员属性3,成员属性4 类型3
     ...
 }
 </code></pre>
-
 <p>在使用结构体的过程中注意以下3点:</p>
 <ul>
 <li>类型名是标识结构体的名称，在同一个包内不能重复。</li>
@@ -187,7 +175,7 @@
 <p><strong>结构体的初始化</strong></p>
 <p><strong>结构体的定义只是一种内存布局的描述，只有当结构体实例化时，才会真正分配内存。因此只有在定义结构体并实例化后才能使用结构体。</strong></p>
 <p><strong>实例化就是根据结构体定义的格式创建一份与格式一致的内存区域。结构体每个实例的内存是完全独立的。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 import &quot;fmt&quot;
 // 定义Teacher结构体
 type Teacher struct{
@@ -221,12 +209,11 @@ func main() {
     fmt.Printf(&quot;t3&gt;&gt;&gt;%T, %v, %q \n&quot;,t3, t3, t3)//main.Teacher, {Sasuke 23 77}, {&quot;Sasuke&quot; '\x17' 'M'}
 }
 </code></pre>
-
 <p><strong>使用new()初始化结构体与结构体、数组、切片中的语法糖</strong></p>
 <p>语法糖（Syntactic Sugar），也译为糖衣语法，是由英国计算机科学家彼得·约翰·兰达（Peter J. Landin）发明的一个术语，指计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员使用。</p>
 <p>通常来说使用语法糖能够提升程序的可读性，从而减少程序代码出错的机会。结构体和数组中都有语法糖。</p>
 <p><strong>使用内置函数new()对结构体进行实例化，结构体实例化后形成指针类型的结构体，new()内置函数会分配内存。第一个参数是类型，而不是值，返回的值是指向该类型新分配的零值的指针。该函数用于创建某个类型的指针。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -269,10 +256,9 @@ func SyntacticSugar(){
     fmt.Println((*arr4)[len(arr)-1]) // 400
 }
 </code></pre>
-
 <p><strong>结构体是值类型</strong></p>
 <p>结构体作为函数参数，若复制一份传递到函数中，在函数中对参数进行修改，不会影响到实际参数，证明结构体是值类型。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -308,11 +294,10 @@ func changeName(t Teacher){
     fmt.Printf(&quot;在changeName函数内部的t:%T, %v, %p \n&quot;,t, t, &amp;t)//main.Teacher, {Sasuke 21 77}, 0xc00005a500
 }
 </code></pre>
-
 <p><strong>结构体的深拷贝与浅拷贝</strong></p>
 <p><strong>值类型是深拷贝，深拷贝就是为新的对象分配了内存。引用类型是浅拷贝，浅拷贝只是复制了对象的指针。</strong></p>
 <p><strong>结构体的拷贝实例：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -364,10 +349,9 @@ func main() {
     fmt.Printf(&quot;d4:%T, %v, %p \n&quot;,d4, d4, &amp;d4)//*main.Dog, &amp;{嘻嘻 black 1 二哈}, 0xc000006038
 }
 </code></pre>
-
 <p><strong>结构体作为函数的参数及返回值</strong></p>
 <p><strong>结构体作为函数的参数及返回值有两种形式：值传递和引用传递：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -457,19 +441,17 @@ f2地址为：0xc00005a5a0，f3地址为0xc00005a620
 更改后： &amp;{桃花 红} &amp;{芙蓉 红}
 */
 </code></pre>
-
 <p><strong>匿名结构体和与结构体的匿名字段</strong></p>
 <p><strong>1. 匿名结构体</strong></p>
 <p>匿名结构体就是没有名字的结构体，无须通过type关键字定义就可以直接使用。创建匿名结构体时，同时要创建对象。</p>
 <p><strong>匿名结构体由结构体定义和键值对初始化两部分组成：</strong></p>
-<pre><code class="go">变量名 := struct {
+<pre><code class="language-go">变量名 := struct {
     // 定义成员属性
 }{
     // 初始化成员属性
 }
 </code></pre>
-
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -501,11 +483,10 @@ func main(){
 {花花 black 1}
 */
 </code></pre>
-
 <p><strong>2. 结构体的匿名字段</strong></p>
 <p>匿名字段就是在结构体中的字段没有名字，只包含一个没有字段名的类型。这些字段被称为匿名字段。</p>
 <p><strong>如果字段没有名字，那么默认使用类型作为字段名，同一个类型只能有一个匿名字段。结构体嵌套中采用匿名结构体字段可以模拟继承关系。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -534,7 +515,6 @@ func main(){
 身高：178.20
 */
 </code></pre>
-
 <p><strong>结构体嵌套</strong></p>
 <p><strong>将一个结构体作为另一个结构体的属性（字段），这种结构就是结构体嵌套。</strong></p>
 <p>结构体嵌套可以模拟面向对象编程中的以下两种关系：</p>
@@ -543,7 +523,7 @@ func main(){
 <li>继承关系：一个类作为另一个类的子类。子类和父类的关系。</li>
 </ul>
 <p><strong>聚合关系</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -595,14 +575,13 @@ func main() {
     // 姓名: Wanghongwei 年龄: 22 省: 陕西省 市: 西安市
 }
 </code></pre>
-
 <p><strong>继承关系</strong></p>
 <p>继承是传统面向对象编程的三大特征之一，用于描述两个类之间的关系。一个类（子类、派生类）继承自另一个类（父类、超类）。</p>
 <p>子类可以有自己的属性和方法，也可以重写父类已有的方法。子类可以直接访问父类所有的属性和方法。</p>
 <p><strong>在结构体中，属于匿名结构体的字段称为提升字段，它们可以被访问，匿名结构体就像是该结构体的父类。</strong></p>
 <p><strong>采用匿名字段的形式就是模拟继承关系。而模拟聚合关系时一定要采用有名字的结构体作为字段。</strong></p>
 <p>接下来通过一个案例来用结构体模拟继承关系：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -672,10 +651,9 @@ func printInfo(s Student){
     fmt.Printf(&quot;姓名:%s, 年龄:%d, 性别:%s, 学校:%s \n&quot;,s.name,s.age,s.gender,s.schoolName)
 }
 </code></pre>
-
 <p><strong>尽量避免结构体嵌套时出现相同的成员名</strong></p>
 <p>结构体嵌套时，可能存在相同的成员名，成员重名会导致成员名字冲突！需要使用下面方式：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -702,7 +680,6 @@ func main(){
     fmt.Println(c) //{{1 3} {2 4}}
 }
 </code></pre>
-
 <p><strong>当重名时，编译器会报错：Ambiguous reference。</strong></p>
 <h3 id="73">7.3 方法 ***</h3>
 <p><strong>方法的概念</strong></p>
@@ -716,14 +693,13 @@ func main(){
 <p><strong>3. 函数不可以重名，而方法可以重名</strong></p>
 <p>只要接受者不同，方法名就可以相同。</p>
 <p><strong>基本语法</strong></p>
-<pre><code class="go">func (接受者变量 接受者类型) 方法名(参数列表) (返回值列表){
+<pre><code class="language-go">func (接受者变量 接受者类型) 方法名(参数列表) (返回值列表){
   // 方法体
 }
 </code></pre>
-
 <p><strong>接受者在func关键字和方法名之间编写，接受者可以是struct类型或非struct类型，可以是指针类型或非指针类型。</strong></p>
 <p><strong>接受者中的变量在命名时，官方建议使用接受者类型的第一个小写字母。下面通过一个案例对比函数和方法在语法上的区别：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -751,7 +727,6 @@ func printSalary(e Employee){
     fmt.Printf(&quot;员工：%s，薪资：%s%.2f \n&quot;,e.name,e.currency,e.salary)
 }
 </code></pre>
-
 <p><strong>方法和函数</strong></p>
 <p>一段程序可以用函数来写，却还要使用方法，主要有以下两个原因：</p>
 <ul>
@@ -760,7 +735,7 @@ func printSalary(e Employee){
 </ul>
 <p>下面通过一个案例来观察不同的结构体中相同的方法名：</p>
 <p><strong>相同方法名：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -793,10 +768,9 @@ func (c Circle) Area() float64{
     return c.radius * c.radius * math.Pi
 }
 </code></pre>
-
 <p><strong>指针作为接受者：</strong></p>
 <p>若方法的接受者不是指针，实际只是获取了一个拷贝，而<strong>不能真正改变接受者中原来的数据</strong>。当指针作为接受者时，情况如下：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -831,10 +805,9 @@ func (r *Rectangle) setValue2(){
     r.height = 666
 }
 </code></pre>
-
 <p><strong>方法继承</strong></p>
 <p>方法是可以继承的，如果匿名字段实现了一个方法，那么包含这个匿名字段的struct也能调用该匿名字段中的方法。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -871,11 +844,10 @@ func (h *Human) SayHi(){
 在Human的SayHi方法中：我是 Steven,联系方式是：1323344xxxx,年龄是：22 
 */
 </code></pre>
-
 <p><strong>方法重写</strong></p>
 <p>在Go语言中，方法重写是指一个包含了匿名字段的struct也实现了该匿名字段实现的方法。</p>
 <p><strong>当结构体存在继承关系时，方法调用按照就近原则。</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -920,7 +892,6 @@ func (e Employee) SayHi(){
 在Employee的SayHi方法中：我是 Steven,联系方式是：1323344xxxx,年龄是：22
 */
 </code></pre>
-
 <h3 id="74">7.4 接口 ***</h3>
 <h4 id="_1">概念及代码演示</h4>
 <p><strong>面向对象语言中，接口用于定义对象的行为。接口只指定对象应该做什么，实现这种行为的方式（实现细节）由对象来决定。</strong></p>
@@ -931,16 +902,15 @@ func (e Employee) SayHi(){
 <p><strong>Go语言的类型都是隐式实现接口的。任何定义了接口中所有方法的类型都被称为隐式地实现了该接口。</strong></p>
 <p><strong>接口的定义与实现</strong></p>
 <p>定义接口的语法格式如下：</p>
-<pre><code class="go">type 接口名 interface {
+<pre><code class="language-go">type 接口名 interface {
   方法1([参数列表]) [返回值]
   方法2([参数列表]) [返回值]
   ...
   方法n([参数列表]) [返回值]
 }
 </code></pre>
-
 <p>实现接口方法的语法格式如下：</p>
-<pre><code class="go">func (变量名 结构体类型) 方法1([参数列表]) [返回值] {
+<pre><code class="language-go">func (变量名 结构体类型) 方法1([参数列表]) [返回值] {
   // 方法体
 }
 func (变量名 结构体类型) 方法2([参数列表]) [返回值] {
@@ -951,9 +921,8 @@ func (变量名 结构体类型) 方法n([参数列表]) [返回值] {
   // 方法体
 }
 </code></pre>
-
 <p>使用案例如下：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1014,14 +983,13 @@ func main() {
     */
 }
 </code></pre>
-
 <h4 id="_2">接口的说明 *</h4>
 <p>interface类型可以定义一组方法，但是这些不需要实现。并且interface不能包含任何变量。到某个自定义类型（比如结构体Phone）要使用的时候，在根据具体情况把这些方法写出来（实现接口）。</p>
 <p><img alt="image-20201203151635092" src="../../imgs/image-20201203151635092.png" /></p>
 <p>（1）接口里的<strong>所有方法都没有方法体</strong>，即接口的方法都是没有实现的方法。接口体现了程序设计的<strong>多态</strong>和<strong>高内聚低耦合</strong>的思想。</p>
 <p>（2）Golang中的接口，不需要显式的实现。只要一个变量（比如结构体变量），含有接口类型中的方法，那么这个变量就实现了这个接口。</p>
 <p>（3）接口本身不能创建实例，但是<strong>可以指向一个实现了该接口的自定义类型的变量</strong>（实例）：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1047,11 +1015,10 @@ func main() {
     fmt.Println(&quot;ret&gt;&gt;&gt; &quot;,ret) // My name is Naruto
 }
 </code></pre>
-
 <p>（4）在Golang中，一个自定义类型需要<strong>将某个接口所有方法都实现</strong>，我们说这个自定义类型<strong>实现了该接口</strong>。</p>
 <p>（5）一个自定义类型<strong>只有实现了某个接口</strong>，才能<strong>将该自定义类型的实例（变量）赋值给接口类型</strong>！</p>
 <p>（6）只要是自定义数据类型就可以实现接口，不仅仅是结构体类型。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1073,9 +1040,8 @@ func main() {
     fmt.Println(&quot;ret&gt;&gt;&gt; &quot;,ret) // say:10
 }
 </code></pre>
-
 <p>（7）一个自定义类型可以实现多个接口</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1117,11 +1083,10 @@ func main() {
     fmt.Println(&quot;ret2&gt;&gt;&gt; &quot;,ret2)//age:22
 }
 </code></pre>
-
 <p>（8）Golang接口中不能有任何变量：</p>
 <p><img alt="image-20201203155454785" src="../../imgs/image-20201203155454785.png" /></p>
 <p>（9）一个接口（比如A接口）可以继承多个别的接口（比如B、C接口），这时如果要实现A接口，也必须将B、C接口的方法也全部实现！</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1172,11 +1137,10 @@ func main() {
     */
 }
 </code></pre>
-
 <p>（10）interface类型默认是一个指针（引用类型），如果没有对interface初始化就使用的话，那么会输出nil。</p>
 <h4 id="2">2个特殊例子*</h4>
 <p>（1）一个自定义类型可以实现多个接口，接口之间可以有相同的方法：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1219,12 +1183,11 @@ func main() {
     B.Test3()//Student实现了Test3方法
 }
 </code></pre>
-
 <p>（2）接口继承的情况下，如果两个基类中有相同的方法，这样不行！会报错！</p>
 <p><img alt="image-20201203162449242" src="../../imgs/image-20201203162449242.png" /></p>
 <h4 id="_3">接口编程的最佳实践*</h4>
 <p><strong>实现对Hero结构体切片的排序：sort.Sort(data Interface)</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -1297,12 +1260,11 @@ func main() {
     }
 }
 </code></pre>
-
 <h4 id="vs">实现接口 VS 继承 *</h4>
 <p><strong>实现接口可以说是对继承的一种补充！</strong></p>
 <p>（1）<strong>当A结构体继承了B结构体，那么A结构体就自动继承了B结构体的字段跟方法，并且可以直接使用。</strong></p>
 <p>（2）<strong>当A结构体需要扩展，同时不希望破坏继承关系，则可以取实现某个接口！</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -1355,7 +1317,6 @@ func main() {
     */
 }
 </code></pre>
-
 <h4 id="duck-typing">duck typing</h4>
 <p>Go没有implements或extends关键字，这类编程语言叫作duck typing编程语言。</p>
 <p><strong>1. 大黄鸭玩具不是鸭子</strong></p>
@@ -1377,7 +1338,7 @@ func main() {
 <li>第二，将结构体类型的变量显式或者隐式地转换为接口I类型的变量i。这样就可以和其他静态类型语言一样，在编译时检查参数的合法性。</li>
 </ul>
 <p>接下来我们通过一个案例加深对duck typing的理解：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1419,7 +1380,6 @@ func main() {
     fmt.Println(i.SayHello())//Jonson说：你好！
 }
 </code></pre>
-
 <p><strong>可以看出，一个函数如果接受接口类型作为参数，那么实际上它可以传入该接口的任意一个实现类的对象作为参数。定义一个接口变量，实际上可以赋值给任意一个实现了该接口的对象。</strong></p>
 <p><strong>如果定义了一个接口类型的容器（数组或切片），实际上该容器可以存储任意一个实现类对象。</strong></p>
 <h4 id="_4">多态</h4>
@@ -1427,7 +1387,7 @@ func main() {
 <p><strong>多态就是事物的多种形态，Go语言中的多态性是在接口的帮助下实现的——定义接口类型，创建实现该接口的结构体对象。</strong></p>
 <p><strong>定义接口类型的对象，可以保存实现该接口的任何类型的值。Go语言接口变量的这个特性实现了Go语言中的多态性。接口类型的对象，不能访问其实现类中的属性字段。</strong></p>
 <h4 id="_5">解释多态现象的案例*</h4>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1514,7 +1474,6 @@ func calculateNetIncome(ic []Income) float64{
 净收入为： 25000
 */
 </code></pre>
-
 <p><strong>可以看出，尽管添加了新的收入方式，但没有对calculateNetIncome()函数做任何更改，全靠多态性起作用。</strong></p>
 <p><strong>由于新的Advertisement类型也实现了Income接口，可以将它添加到ic切片中。</strong></p>
 <p><strong>CalculateNetIncome()函数在没有任何更改的情况下工作，因为它可以调用Advertisement类型的calculate()和source()方法。</strong></p>
@@ -1523,7 +1482,7 @@ func calculateNetIncome(ic []Income) float64{
 <p>在前面的Usb接口案例，usb Usb既可以接收手机变量，又可以接收相机变量，体现了Usb接口的多态参数。</p>
 <p><strong>2、多态数组</strong></p>
 <p>演示一个案例：给Usb数组中存放Phone结构体与Camera结构体变量：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1576,7 +1535,6 @@ func main() {
     */
 }
 </code></pre>
-
 <h4 id="_7">空接口 *</h4>
 <p>空接口中没有任何方法。任意类型都可以实现该接口。空接口这样定义：interface{}，也就是包含0个方法（method）的interface。空接口可表示任意数据类型，类似于Java中的object。</p>
 <p>空接口常用于以下情形：</p>
@@ -1586,7 +1544,7 @@ func main() {
 <li>定义一个切片，其中存储任意类型的数据！！！</li>
 </ul>
 <p>空接口的使用方式：</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1636,10 +1594,9 @@ func showInfo(a A){
     fmt.Printf(&quot;%T, %v \n&quot;,a,a)
 }
 </code></pre>
-
 <p><strong>在上例中，变量a1、a2、a3、a4、a5分别为不同类型的变量，它们均可以存放在空接口中使用。</strong></p>
 <p><strong><em> 空接口 interface{} 没有任何方法，</em>*所以所有类型都实现了空接口</strong>，即我们可以把任何一个变量赋值给空接口。</p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1664,21 +1621,18 @@ func main() {
     fmt.Println(t1,t2)//hhh 10.12
 }
 </code></pre>
-
 <h3 id="75">7.5 类型断言/接口对象转型 *</h3>
 <p><strong>第一种实现方式</strong></p>
-<pre><code class="go">instance, ok := 接口对象.(实际类型)
+<pre><code class="language-go">instance, ok := 接口对象.(实际类型)
 </code></pre>
-
 <p><strong>如果该接口对象是对应的实际类型，那么instance就是转型之后的对象，ok的值为true，配合if ... else if...语句使用。</strong></p>
 <p><strong>第二种实现方式</strong></p>
-<pre><code class="go">接口对象.[type]
+<pre><code class="language-go">接口对象.[type]
 </code></pre>
-
 <p><strong>此方式配合switch...case语句使用。</strong></p>
 <h4 id="_8">最佳实践一：循环判断传入参数的类型</h4>
 <p>接下来通过一个案例实现接口对象转型<strong>（注意三角形Triangle结构体的那个系统接口）：</strong></p>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import (
     &quot;fmt&quot;
@@ -1805,9 +1759,8 @@ showInfo函数中～main.Circle, {1}
 Triangle对象，属性分别是：3.00, 4.00, 5.00
 */
 </code></pre>
-
 <h4 id="_9">最佳实践二：根据不同类型执行不同的方法</h4>
-<pre><code class="go">package main
+<pre><code class="language-go">package main
 
 import &quot;fmt&quot;
 
@@ -1908,7 +1861,7 @@ ok&gt;&gt;&gt;  false
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -1918,7 +1871,7 @@ ok&gt;&gt;&gt;  false
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -1932,6 +1885,11 @@ ok&gt;&gt;&gt;  false
     <script>var base_url = '../..';</script>
     <script src="../../js/theme.js" defer></script>
       <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
