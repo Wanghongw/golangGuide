@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>01 个人博客总结 - Golang服务端入门与进阶指南</title>
+  <title>Go踩坑 - Golang服务端入门与进阶指南</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "01 \u4e2a\u4eba\u535a\u5ba2\u603b\u7ed3";
-    var mkdocs_page_input_path = "\u57fa\u7840/\u4e2a\u4eba\u5b9e\u8df5.md";
+    var mkdocs_page_name = "Go\u8e29\u5751";
+    var mkdocs_page_input_path = "\u57fa\u7840/go\u8e29\u5751.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -48,15 +48,23 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">Go踩坑</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../go%E8%B8%A9%E5%9D%91/">Go踩坑</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Go踩坑</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">循环变量快照问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">正确的写法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">错误的写法</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">个人实践总结</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">01 个人博客总结</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/">01 个人博客总结</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Golang基础总结</span></p>
@@ -108,11 +116,11 @@
     
       
         
-          <li>个人实践总结 &raquo;</li>
+          <li>Go踩坑 &raquo;</li>
         
       
     
-    <li>01 个人博客总结</li>
+    <li>Go踩坑</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -123,10 +131,62 @@
           <div role="main">
             <div class="section">
               
-                <h3 id="golang">个人golang博客汇总</h3>
-<p>笔者在工作与学习的过程中会将自己遇到的问题以及解决的思路与方案做成demo总结一下，方便以后遇到相同的问题或者对这部分知识点又了更深刻的认识后做一下参考并且快速解决问题。</p>
-<p>下面是笔者博客园的链接，欢迎参考：</p>
-<p><a href="https://www.cnblogs.com/paulwhw/p/13854308.html">Golang/Docker归结</a></p>
+                <h2 id="_1"></h2>
+<h3 id="_2">循环变量快照问题</h3>
+<h4 id="_3">正确的写法</h4>
+<pre><code class="language-c++">package gos
+
+import (
+    &quot;fmt&quot;
+    &quot;testing&quot;
+)
+
+func TestTs(t *testing.T){
+
+    lis := []int{1,2,5}
+    for _, i := range lis{
+        // 匿名函数中传入循环的值，避免循环变量快照问题
+        go func(a int){
+            fmt.Println(&quot;a: &quot;, a)
+        }(i)
+    }
+}
+/*
+结果（因为没有做waitGroup，所以打印的个数不确定！）：
+a: 1
+a: 5
+a: 2
+*/
+</code></pre>
+<p><strong>❗️匿名函数中的循环变量快照问题：上面这个单独的变量i是被所有的匿名函数值所共享，且会被连续的循环迭代所更新的。</strong></p>
+<p><strong>当新的goroutine开始执行字面函数时，for循环可能已经更新了f并且开始了另一轮的迭代或者（更有可能的）已经结束了整个循环，所以当这些goroutine开始读取i的值时，它们所看到的值已经是slice的最后一个元素了。</strong></p>
+<p><strong>在匿名函数中显式地添加i这个参数（也就是形参a），我们能够确保使用的i是当go语句执行时的“当前”那个i。</strong></p>
+<h4 id="_4">错误的写法</h4>
+<p><strong>❗️不可以像这样写——“循环变量快照”问题：</strong></p>
+<pre><code class="language-c++">package gos
+
+import (
+    &quot;fmt&quot;
+    &quot;testing&quot;
+)
+
+func TestTs(t *testing.T){
+
+    lis := []int{1,2,5}
+    for _, i := range lis{
+        go func(){
+            // 如果匿名函数中没有任何参数，i是被所有匿名函数共享的！这样i会是最后一个值
+            fmt.Println(&quot;a: &quot;, i)
+        }()
+    }
+}
+/*
+结果（因为没有做waitGroup，所以打印的个数不确定！）：
+a: 5
+a: 5
+a: 5
+*/
+</code></pre>
               
             </div>
           </div>
@@ -134,10 +194,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../1/" class="btn btn-neutral float-right" title="01 基础知识到循环">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/" class="btn btn-neutral float-right" title="01 个人博客总结">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../go%E8%B8%A9%E5%9D%91/" class="btn btn-neutral" title="Go踩坑"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -163,10 +221,8 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../go%E8%B8%A9%E5%9D%91/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../1/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
