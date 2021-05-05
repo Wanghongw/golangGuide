@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>基础 - Golang服务端入门与进阶指南</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u57fa\u7840";
+    var mkdocs_page_input_path = "go\u5723\u7ecf/Go\u8bed\u8a00\u5723\u7ecf--\u57fa\u7840.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Golang服务端入门与进阶指南</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">个人实践总结</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/%E4%B8%AA%E4%BA%BA%E5%AE%9E%E8%B7%B5/">01 个人博客总结</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Golang基础总结</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/1/">01 基础知识到循环</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/2/">02 容器类型</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/3/">03 函数闭包指针</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/4/">04 值/引用类型与异常处理</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/5/">05 结构体接口与反射</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/6/">06 各种内置模块的使用</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/7/">07 网编并发</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../1%E5%B9%B6%E5%8F%91/">01 goroutine与channels</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">基础</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1、入门</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11-hello-world">1.1 hello world</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 命令行参数</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13">1.3 查找重复的行</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1_1">版本1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14-gif">1.4 GIF动画</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#15-url">1.5 获取URL</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#16-url">1.6 并发获取多个URL</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Golang服务端入门与进阶指南</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>《Go语言圣经》笔记 &raquo;</li>
+        
+      
+    
+    <li>基础</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1"></h2>
+<h3 id="1">1、入门</h3>
+<h4 id="11-hello-world">1.1 hello world</h4>
+<pre><code class="language-go">package main
+
+import &quot;fmt&quot;
+
+func main(){
+  fmt.Println(&quot;hello world&quot;)
+}
+</code></pre>
+<p>Go语言的代码通过<strong>包</strong>（package）组织，包类似于其它语言里的库（libraries）或者模块（modules）。一个包由位于单个目录下的一个或多个.go源代码文件组成，目录定义包的作用。每个源文件都以一条<code>package</code>声明语句开始，这个例子里就是<code>package main</code>，表示该文件属于哪个包，紧跟着一系列导入（import）的包，之后是存储在这个文件里的程序语句。</p>
+<p><code>main</code>包比较特殊。它定义了一个独立可执行的程序，而不是一个库。在<code>main</code>里的<code>main</code> <em>函数</em> 也很特殊，它是整个程序执行时的入口（译注：C系语言差不多都这样）。<code>main</code>函数所做的事情就是程序做的。当然了，<code>main</code>函数一般调用其它包里的函数完成很多工作（如：<code>fmt.Println</code>）。</p>
+<p>Go语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。实际上，编译器会主动把特定符号后的换行符转换为分号，因此换行符添加的位置会影响Go代码的正确解析（译注：比如行末是标识符、整数、浮点数、虚数、字符或字符串文字、关键字<code>break</code>、<code>continue</code>、<code>fallthrough</code>或<code>return</code>中的一个、运算符和分隔符<code>++</code>、<code>--</code>、<code>)</code>、<code>]</code>或<code>}</code>中的一个）。举个例子，函数的左括号<code>{</code>必须和<code>func</code>函数声明在同一行上，且位于末尾，不能独占一行，而在表达式<code>x + y</code>中，可在<code>+</code>后换行，不能在<code>+</code>前换行（译注：以+结尾的话不会被插入分号分隔符，但是以x结尾的话则会被分号分隔符，从而导致编译错误）。</p>
+<h4 id="12">1.2 命令行参数</h4>
+<p><code>os</code>包以跨平台的方式，提供了一些与操作系统交互的函数和变量。程序的命令行参数可从os包的Args变量获取；os包外部使用os.Args访问该变量。</p>
+<p>os.Args变量是一个字符串（string）的<em>切片</em>（slice）。</p>
+<p>os.Args的第一个元素：os.Args[0]，是命令本身的名字；其它的元素则是程序启动时传给它的参数。</p>
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+)
+
+func main() {
+    var s, sep string
+    //for i:=1; i &lt; len(os.Args); i++{
+    for i, _ := range os.Args{
+        //if i == 1{
+        //  continue
+        //}
+        s += sep + os.Args[i]
+        sep = &quot;_&quot;
+    }
+    fmt.Println(s)
+}
+</code></pre>
+<p>build一下然后运行：</p>
+<pre><code class="language-go">// build
+go build main.go
+
+// 运行
+./main whw 666
+// 结果
+./main_whw_666
+</code></pre>
+<h4 id="13">1.3 查找重复的行</h4>
+<p><strong>*对文件做拷贝、打印、搜索、排序、统计或类似事情的程序都有一个差不多的程序结构：一个处理输入的循环，在每个元素上执行计算处理，在处理的同时或最后产生输出。</strong></p>
+<h5 id="1_1">版本1</h5>
+<p><code>dup</code>的第一个版本打印标准输入中多次出现的行，以重复次数开头。该程序将引入<code>if</code>语句，<code>map</code>数据类型以及<code>bufio</code>包：</p>
+<pre><code class="language-go">package main
+
+import (
+    &quot;bufio&quot;
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;strings&quot;
+)
+
+func main() {
+    counts := make(map[string]int)
+  // 持续接收终端输入的数据
+    input := bufio.NewScanner(os.Stdin)
+    for input.Scan() {
+        if strings.ToUpper(input.Text()) == &quot;Q&quot; {
+            break
+        }
+        // 等价于下面的语句：
+        /*
+            line := input.Text()
+            counts[line] = counts[line] + 1
+        */
+        counts[input.Text()]++
+    }
+    fmt.Println(&quot;counts: &quot;, counts)
+    // NOTE: ignoring potential errors from input.Err()
+    for line, n := range counts {
+        fmt.Printf(&quot;%d(个)%s \n&quot;, n, line)
+
+    }
+}
+</code></pre>
+<pre><code class="language-go">执行过程及结果如下：
+go run main.go
+123
+www
+www
+222
+q // 输入q时打印结果
+counts:  map[123:1 222:1 www:2]
+1(个)123 
+2(个)www 
+1(个)222 
+</code></pre>
+<h4 id="14-gif">1.4 GIF动画</h4>
+<p>（略）</p>
+<h4 id="15-url">1.5 获取URL</h4>
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+)
+
+func main() {
+
+    for _, url := range os.Args[1:] {
+        resp, err := http.Get(url)
+        if err != nil {
+            fmt.Fprintf(os.Stderr, &quot;fetch: %v\n&quot;, err)
+            os.Exit(1)
+        }
+        b, err := ioutil.ReadAll(resp.Body)
+        defer resp.Body.Close()
+        if err != nil {
+            fmt.Fprintf(os.Stderr, &quot;fetch: reading %s: %v \n&quot;, url, err)
+            os.Exit(1)
+        }
+        fmt.Println(&quot;b&gt;&gt;&gt; &quot;, b)
+    }
+}
+</code></pre>
+<p><strong>build及执行：</strong></p>
+<pre><code class="language-go">// build
+go build main.go
+// excute （结果太多，略）
+./main https://www.baidu.com https://www.google.hk
+</code></pre>
+<h4 id="16-url">1.6 并发获取多个URL</h4>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../1%E5%B9%B6%E5%8F%91/" class="btn btn-neutral" title="01 goroutine与channels"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../1%E5%B9%B6%E5%8F%91/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

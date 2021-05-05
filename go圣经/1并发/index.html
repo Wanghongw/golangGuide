@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>01 并发 - Golang服务端入门与进阶指南</title>
+  <title>01 goroutine与channels - Golang服务端入门与进阶指南</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "01 \u5e76\u53d1";
+    var mkdocs_page_name = "01 goroutine\u4e0echannels";
     var mkdocs_page_input_path = "go\u5723\u7ecf/1\u5e76\u53d1.md";
     var mkdocs_page_url = null;
   </script>
@@ -71,7 +71,7 @@
                 </ul>
                 <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">01 并发</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">01 goroutine与channels</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#81-goroutines">8.1 Goroutines</a>
     </li>
@@ -104,12 +104,22 @@
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#842-channelpipeline">8.4.2✨ 串联的channel(pipeline)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">接收操作的变体</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#range">❗️使用range接收</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">重要概念</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#843-channel">8.4.3✨ 单方向的channel</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#844-channel">8.4.4✨ 带缓存的channel</a>
     </li>
     </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F--%E5%9F%BA%E7%A1%80/">基础</a>
                     </li>
                 </ul>
       </div>
@@ -137,7 +147,7 @@
         
       
     
-    <li>01 并发</li>
+    <li>01 goroutine与channels</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -228,9 +238,9 @@ x = &lt;-ch // a receive expression in an assignment statement
 </code></pre>
 <h4 id="bufferedunbuffered-channel">buffered与unbuffered channel</h4>
 <p>以最简单方式调用make函数创建的是一个无缓存的channel，但是我们也可以指定第二个整型参数，对应channel的容量。如果channel的容量大于零，那么该channel就是带缓存的channel。</p>
-<pre><code class="language-c++">ch = make(chan int)    // unbuffered channel
-ch = make(chan int, 0) // unbuffered channel
-ch = make(chan int, 3) // buffered channel with capacity 3
+<pre><code class="language-c++">ch := make(chan int)    // unbuffered channel
+ch := make(chan int, 0) // unbuffered channel
+ch := make(chan int, 3) // buffered channel with capacity 3
 </code></pre>
 <h3 id="841-channel">8.4.1✨ 不带缓存的channel</h3>
 <h4 id="_2">重要特性</h4>
@@ -243,10 +253,137 @@ ch = make(chan int, 3) // buffered channel with capacity 3
 <p><strong>在下一章中我们将看到，当两个goroutine并发访问了相同的变量时，我们有必要保证某些事件的执行顺序，以避免出现某些并发问题。</strong></p>
 <h4 id="channel_4">同步channel的示例</h4>
 <p>在8.3节的客户端程序，它在<code>主goroutine</code>中（译注：就是<code>执行main函数的goroutine</code>）将标准输入复制到server，因此当客户端程序关闭标准输入时，后台goroutine可能依然在工作。我们需要让主goroutine等待后台goroutine完成工作后再退出，我们使用了一个channel来同步两个goroutine：</p>
-<pre><code class="language-c++">
+<pre><code class="language-c++">package main
 
+import (
+    &quot;log&quot;
+)
+
+func main() {
+    // 定义一个无缓存的channel
+    done := make(chan string)
+
+    // 子goroutine
+    go func(){
+        log.Println(&quot;son goroutine has done...&quot;)
+        // send
+        done &lt;- &quot;fucking done!&quot; // signal the main goroutine
+    }()
+    // 下面的打印语句与子goroutine同时执行！
+    log.Println(&quot;main goroutine1.....&quot;)
+
+    &lt;- done // 等待后台子goroutine执行完才执行下面的打印语句！
+    log.Println(&quot;main goroutine2.....&quot;)
+}
 </code></pre>
+<p><strong>基于channels发送消息有两个重要方面。首先每个消息都有一个值，但是有时候通讯的<code>事实</code>和<code>发生的时刻</code>也同样重要。</strong></p>
+<p><strong>当我们更希望强调通讯发生的时刻时，我们将它称为<code>消息事件</code>。</strong></p>
+<p><strong>有些消息事件并不携带额外的信息，它仅仅是用作两个goroutine之间的同步，这时候我们可以用<code>struct{}</code>空结构体作为channels元素的类型，虽然也可以使用bool或int类型实现同样的功能，<code>done &lt;- 1</code>语句也比<code>done &lt;- struct{}{}</code>更短。</strong></p>
 <h3 id="842-channelpipeline">8.4.2✨ 串联的channel(pipeline)</h3>
+<p><strong>Channels也可以用于将多个goroutine连接在一起，一个Channel的输出作为下一个Channel的输入。这种串联的Channels就是所谓的管道（pipeline）。下面的程序用两个channels将三个goroutine串联起来：</strong></p>
+<p><img alt="image-20210505081542512" src="../../imgs/image-20210505081542512.png" /></p>
+<p>第一个goroutine是一个计数器，用于生成0、1、2、……形式的整数序列，然后通过channel将该整数序列发送给第二个goroutine；第二个goroutine是一个求平方的程序，对收到的每个整数求平方，然后将平方后的结果通过第二个channel发送给第三个goroutine；第三个goroutine是一个打印程序，打印收到的每个整数。为了保持例子清晰，我们有意选择了非常简单的函数，当然三个goroutine的计算很简单，在现实中确实没有必要为如此简单的运算构建三个goroutine：</p>
+<pre><code class="language-c++">package main
+
+import &quot;fmt&quot;
+
+func main() {
+
+    naturals := make(chan int)
+    squares := make(chan int)
+
+    // Counter
+    go func(){
+        // 无限往里面加
+        for x := 0; ; x++{
+            naturals &lt;- x
+        }
+    }()
+
+    // Squarer
+    go func(){
+        for {
+            x := &lt;- naturals
+            squares &lt;- x * x
+        }
+    }()
+
+    // Printer
+    for{
+        y := &lt;- squares
+        // 限制...
+        if y &gt; 10000{
+            // 关闭
+            close(naturals)
+            close(squares)
+            fmt.Println(y)
+            return
+        }
+        fmt.Println(y)
+    }
+}
+</code></pre>
+<p><strong>❗️当一个channel被关闭后，再向该channel发送数据将导致panic异常。</strong></p>
+<p><strong>❗️当一个被关闭的channel中已经发送的数据都被成功接收后，后续的接收操作将不再阻塞，它们会立即返回一个零值。</strong></p>
+<p><strong>关闭上面例子中的naturals变量对应的channel并不能终止循环，它依然会收到一个永无休止的零值序列，然后将它们发送给打印者goroutine。</strong></p>
+<h4 id="_3">接收操作的变体</h4>
+<p><strong>没有办法直接测试一个channel是否被关闭，但是接收操作有一个变体形式：它多接收一个结果，多接收的第二个结果是一个布尔值ok，ture表示成功从channels接收到值，false表示channels已经被关闭并且里面没有值可接收。</strong></p>
+<p><strong>使用这个特性，我们可以修改squarer函数中的循环代码，当naturals对应的channel被关闭并没有值可接收时跳出循环，并且也关闭squares对应的channel.</strong></p>
+<pre><code class="language-c++">    // Squarer
+    go func(){
+        for {
+            x, ok := &lt;- naturals
+            if !ok{
+                break // channel was closed and drained
+            }
+            squares &lt;- x * x
+        }
+        close(squares)
+    }()
+</code></pre>
+<h4 id="range">❗️使用range接收</h4>
+<p><strong>因为上面的语法是笨拙的，而且这种处理模式很常见，因此Go语言的range循环可直接在channels上面迭代。</strong></p>
+<p><strong>使用range循环是上面处理模式的简洁语法，它<code>依次从channel接收数据</code>，<code>当channel被关闭并且没有值可接收时跳出循环</code>。</strong></p>
+<pre><code class="language-c++">package main
+
+import &quot;fmt&quot;
+
+func main() {
+
+    naturals := make(chan int)
+    squares := make(chan int)
+
+    // Counter
+    go func(){
+        // 100个
+        for x := 0; x&lt;100; x++{
+            naturals &lt;- x
+        }
+        // close
+        close(naturals)
+    }()
+
+    // Squarer
+    go func(){
+        // for ... range 的方式
+        for x := range naturals{
+            squares &lt;- x * x
+        }
+        // close
+        close(squares)
+    }()
+
+    // Printer 主goroutine中
+    for x := range squares{
+        fmt.Println(&quot;x: &quot;, x)
+    }
+}
+</code></pre>
+<h4 id="_4">重要概念</h4>
+<p><strong>❗️其实你并不需要关闭每一个channel。只有当需要告诉接收者goroutine，所有的数据已经全部发送时才需要关闭channel。</strong></p>
+<p><strong>❗️不管一个channel是否被关闭，当它没有被引用时将会被Go语言的垃圾自动回收器回收。</strong></p>
+<p><strong>不要将关闭一个打开文件的操作和关闭一个channel操作混淆。对于每个打开的文件，都需要在不使用的时候调用对应的Close方法来关闭文件。</strong></p>
+<p><strong>试图重复关闭一个channel将导致panic异常，试图关闭一个nil值的channel也将导致panic异常。关闭一个channels还会触发一个广播机制。</strong></p>
 <h3 id="843-channel">8.4.3✨ 单方向的channel</h3>
 <h3 id="844-channel">8.4.4✨ 带缓存的channel</h3>
               
@@ -255,6 +392,8 @@ ch = make(chan int, 3) // buffered channel with capacity 3
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F--%E5%9F%BA%E7%A1%80/" class="btn btn-neutral float-right" title="基础">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../%E5%9F%BA%E7%A1%80/7/" class="btn btn-neutral" title="07 网编并发"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -285,6 +424,8 @@ ch = make(chan int, 3) // buffered channel with capacity 3
       
         <span><a href="../../%E5%9F%BA%E7%A1%80/7/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F--%E5%9F%BA%E7%A1%80/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
