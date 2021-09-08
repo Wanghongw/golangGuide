@@ -2,6 +2,8 @@ site_name: Golang服务端入门与进阶指南
 theme: readthedocs
 
 nav: 
+  - Go踩坑:
+    - Go踩坑: Go踩坑.md
   - 个人实践总结:
     - 01 个人博客总结: 基础/个人实践.md
   - Golang基础总结:
@@ -12,5 +14,8 @@ nav:
     - 05 结构体接口与反射: 基础/5.md
     - 06 各种内置模块的使用: 基础/6.md
     - 07 网编并发: 基础/7.md
-  - The Go Programming Language:
-    - 01 入门: go圣经/入门.md
+  - 《Go语言圣经》笔记:
+    - 00 写在最前: go圣经/0写在最前.md
+    - 01 goroutine与channel: go圣经/1goroutine与channel.md
+    - 02 基于共享变量的并发: go圣经/2基于共享变量的并发.md
+    - 基础: go圣经/基础.md
