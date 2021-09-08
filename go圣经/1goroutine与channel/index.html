@@ -19,7 +19,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "01 goroutine\u4e0echannel";
-    var mkdocs_page_input_path = "go\u5723\u7ecf/ChannelsAndGoroutnie.md";
+    var mkdocs_page_input_path = "go\u5723\u7ecf/1goroutine\u4e0echannel.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -49,7 +49,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">Go踩坑</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../%E5%9F%BA%E7%A1%80/go%E8%B8%A9%E5%9D%91/">Go踩坑</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../Go%E8%B8%A9%E5%9D%91/">Go踩坑</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">个人实践总结</span></p>
@@ -76,7 +76,7 @@
                 </ul>
                 <p class="caption"><span class="caption-text">《Go语言圣经》笔记</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../0/">00 写在最前</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../0%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D/">00 写在最前</a>
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">01 goroutine与channel</a>
     <ul class="current">
@@ -114,7 +114,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#_3">接收操作的变体</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#range">❗️使用range接收</a>
+    <li class="toctree-l3"><a class="reference internal" href="#range">使用range接收❗️</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#_4">重要概念</a>
     </li>
@@ -198,9 +198,9 @@
     </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91/">02 基于共享变量的并发</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91/">02 基于共享变量的并发</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F--%E5%9F%BA%E7%A1%80/">基础</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../%E5%9F%BA%E7%A1%80/">基础</a>
                     </li>
                 </ul>
       </div>
@@ -319,9 +319,9 @@ x = &lt;-ch // a receive expression in an assignment statement
 </code></pre>
 <h4 id="bufferedunbuffered-channel">buffered与unbuffered channel</h4>
 <p>以最简单方式调用make函数创建的是一个无缓存的channel，但是我们也可以指定第二个整型参数，对应channel的容量。如果channel的容量大于零，那么该channel就是带缓存的channel。</p>
-<pre><code class="language-c++">ch := make(chan int)    // unbuffered channel
-ch := make(chan int, 0) // unbuffered channel
-ch := make(chan int, 3) // buffered channel with capacity 3
+<pre><code class="language-c++">ch = make(chan int)    // unbuffered channel
+ch = make(chan int, 0) // unbuffered channel
+ch = make(chan int, 3) // buffered channel with capacity 3
 </code></pre>
 <h3 id="841-channel">8.4.1 不带缓存的channel</h3>
 <h4 id="_2">重要特性</h4>
@@ -362,7 +362,7 @@ func main() {
 <p><strong>有些消息事件并不携带额外的信息，它仅仅是用作两个goroutine之间的同步，这时候我们可以用<code>struct{}</code>空结构体作为channels元素的类型，虽然也可以使用bool或int类型实现同样的功能，<code>done &lt;- 1</code>语句也比<code>done &lt;- struct{}{}</code>更短。</strong></p>
 <h3 id="842-channelpipeline">8.4.2 串联的channel(pipeline)</h3>
 <p><strong>Channels也可以用于将多个goroutine连接在一起，一个Channel的输出作为下一个Channel的输入。这种串联的Channels就是所谓的管道（pipeline）。下面的程序用两个channels将三个goroutine串联起来：</strong></p>
-<p><img alt="image-20210505081542512" src="../../imgs/image-20210505081542512.png" /></p>
+<p><img alt="123" src="../../imgs/WX20210908-122903.png" /></p>
 <p>第一个goroutine是一个计数器，用于生成0、1、2、……形式的整数序列，然后通过channel将该整数序列发送给第二个goroutine；第二个goroutine是一个求平方的程序，对收到的每个整数求平方，然后将平方后的结果通过第二个channel发送给第三个goroutine；第三个goroutine是一个打印程序，打印收到的每个整数。为了保持例子清晰，我们有意选择了非常简单的函数，当然三个goroutine的计算很简单，在现实中确实没有必要为如此简单的运算构建三个goroutine：</p>
 <pre><code class="language-c++">package main
 
@@ -422,7 +422,7 @@ func main() {
         close(squares)
     }()
 </code></pre>
-<h4 id="range">❗️使用range接收</h4>
+<h4 id="range">使用range接收❗️</h4>
 <p><strong>因为上面的语法是笨拙的，而且这种处理模式很常见，因此Go语言的range循环可直接在channels上面迭代。</strong></p>
 <p><strong>使用range循环是上面处理模式的简洁语法，它<code>依次从channel接收数据</code>，<code>当channel被关闭并且没有值可接收时跳出循环</code>。</strong></p>
 <pre><code class="language-c++">package main
@@ -532,17 +532,17 @@ func Printer(in &lt;-chan int){
 <p><strong>队列的最大容量是在调用make函数创建channel时通过第二个参数指定的。</strong></p>
 <p><strong>下面的语句创建了一个可以持有三个字符串元素的带缓存Channel。</strong></p>
 <p><strong>图8.2是ch变量对应的channel的图形表示形式：</strong></p>
-<p><img alt="image-20210505113258297" src="../../imgs/image-20210505113258297.png" /></p>
+<p><img alt="222" src="../../imgs/WX20210908-123537.png" /></p>
 <p><strong>向缓存Channel的发送操作就是向内部缓存队列的尾部插入元素，接收操作则是从队列的头部删除元素。</strong></p>
 <p><strong>如果内部缓存队列是满的，那么发送操作将阻塞直到因另一个goroutine执行接收操作而释放了新的队列空间。</strong></p>
 <p><strong>相反，如果channel是空的，接收操作将阻塞直到有另一个goroutine执行发送操作而向队列插入元素。</strong></p>
-<pre><code class="language-c">ch &lt;- &quot;A&quot;
+<pre><code class="language-c++">ch &lt;- &quot;A&quot;
 ch &lt;- &quot;B&quot;
 ch &lt;- &quot;C&quot;
 </code></pre>
 <p>此刻，channel的内部缓存队列将是满的（图8.3），<code>如果有第四个发送操作将发生阻塞。</code></p>
 <p>如果我们接收一个值，</p>
-<pre><code class="language-c">fmt.Println(&lt;-ch) // &quot;A&quot;
+<pre><code class="language-c++">fmt.Println(&lt;-ch) // &quot;A&quot;
 </code></pre>
 <p>那么channel的缓存队列将不是满的也不是空的，因此对该channel执行的发送或接收操作都不会发生阻塞。</p>
 <p><strong>通过这种方式，channel的缓存队列解耦了接收和发送的goroutine。</strong></p>
@@ -558,8 +558,7 @@ ch &lt;- &quot;C&quot;
 <p>在继续执行两次接收操作后channel内部的缓存队列将又成为空的，如果有第四个接收操作将发生阻塞：</p>
 <pre><code class="language-Go">fmt.Println(&lt;-ch) // &quot;B&quot;
 fmt.Println(&lt;-ch) // &quot;C&quot;
-</code></pre>
-<pre><code class="language-c++">package main
+package main
 
 import &quot;fmt&quot;
 
@@ -769,7 +768,6 @@ a: 5
 
     return thumbfiles, nil
 }
-
 </code></pre>
 <h4 id="_9">最终版本❗️</h4>
 <h5 id="1-slice">1 传slice的版本</h5>
@@ -854,7 +852,7 @@ func makeThumbnails6(fileNames []string) int64 {
 <p><strong>两步操作：wait和close，必须是基于sizes的循环的并发。</strong></p>
 <p><strong>考虑一下另一种方案：如果等待操作被放在了main goroutine中，在循环之前，这样的话就永远都不会结束了，如果在循环之后，那么又变成了不可达的部分，因为没有任何东西去关闭这个channel，这个循环就永远都不会终止。</strong></p>
 <p>❗️图8.5 表明了makethumbnails6函数中事件的序列。纵列表示goroutine。窄线段代表sleep，粗线段代表活动。斜线箭头代表用来同步两个goroutine的事件。时间向下流动。注意main goroutine是如何大部分的时间被唤醒执行其range循环，等待worker发送值或者closer来关闭channel的。</p>
-<p><img alt="image-20210505143333264" src="../../imgs/image-20210505143333264.png" /></p>
+<p><img alt="333" src="../../imgs/WX20210908-124207.png" /></p>
 <h5 id="2-channel">2 传channel的版本 ❓</h5>
 <p>和前面的版本都不一样的一点是<strong>我们在这个版本里没有把文件名放在slice里，而是通过一个string的channel传过来，<code>所以我们无法对循环的次数进行预测</code>。</strong></p>
 <p><strong>❓这个版本的代码有问题，还需要继续调试：</strong></p>
@@ -1240,10 +1238,10 @@ go func() {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91/" class="btn btn-neutral float-right" title="02 基于共享变量的并发">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../2%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91/" class="btn btn-neutral float-right" title="02 基于共享变量的并发">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../0/" class="btn btn-neutral" title="00 写在最前"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../0%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D/" class="btn btn-neutral" title="00 写在最前"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -1269,10 +1267,10 @@ go func() {
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../0/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../0%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../2%E5%9F%BA%E4%BA%8E%E5%85%B1%E4%BA%AB%E5%8F%98%E9%87%8F%E7%9A%84%E5%B9%B6%E5%8F%91/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
